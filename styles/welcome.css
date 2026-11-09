@@ -1,0 +1,371 @@
+/* ==================================
+   OTKUSHU — WELCOME MODAL
+   ================================== */
+
+body.otk-welcome-locked {
+  overflow: hidden;
+}
+
+.otk-welcome {
+  box-sizing: border-box;
+  width: min(480px, calc(100% - 32px));
+  max-width: none;
+  max-height: 90vh;
+  max-height: 90dvh;
+  margin: auto;
+  padding: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  background: #ffffff;
+  color: var(--text-main, #1e293b);
+
+  box-shadow: 0 25px 80px rgba(15, 23, 42, 0.2);
+}
+
+.otk-welcome::backdrop {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(5px);
+}
+
+.otk-welcome__content {
+  position: relative;
+  box-sizing: border-box;
+  padding: 30px;
+  font-family: "InterVariable", sans-serif;
+}
+
+.otk-welcome__close {
+  position: absolute;
+  top: 17px;
+  right: 17px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  border: none;
+  border-radius: 10px;
+  background: #f1f5f9;
+  color: #64748b;
+
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.otk-welcome__close:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+.otk-welcome__emoji {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 60px;
+  height: 60px;
+  margin-bottom: 20px;
+
+  font-size: 32px;
+  border-radius: 18px;
+  background: #eaf4ee;
+}
+
+.otk-welcome h2 {
+  margin: 0 0 10px;
+  padding-right: 10px;
+
+  font-size: clamp(21px, 4.5vw, 27px);
+  font-weight: 800;
+  letter-spacing: -0.7px;
+  line-height: 1.25;
+}
+
+.otk-welcome h2 span {
+  color: var(--primary, #1d6746);
+}
+
+.otk-welcome__description {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-muted, #64748b);
+}
+
+.otk-welcome__features {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+
+  margin: 24px 0;
+  padding: 22px 0;
+
+  border-top: 1px solid #edf1f4;
+  border-bottom: 1px solid #edf1f4;
+}
+
+.otk-welcome__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  min-width: 0;
+}
+
+.otk-welcome__feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+
+  border-radius: 12px;
+  background: #eaf4ee;
+}
+
+.otk-welcome__feature-icon img {
+  width: 21px;
+  height: 21px;
+  object-fit: contain;
+}
+
+.otk-welcome__feature strong {
+  display: block;
+  margin-bottom: 4px;
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.otk-welcome__feature p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-muted, #64748b);
+}
+
+.otk-welcome__start {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 20px;
+
+  border: none;
+  border-radius: 13px;
+  background: var(--primary, #1d6746);
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 750;
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.otk-welcome__start:hover {
+  background: #145235;
+  transform: translateY(-2px);
+}
+
+.otk-welcome__start span {
+  font-size: 20px;
+}
+
+.otk-welcome__note {
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #94a3b8;
+}
+
+.otk-welcome button:focus-visible {
+  outline: 3px solid #faca4b;
+  outline-offset: 3px;
+}
+
+/* Плавное появление */
+.otk-welcome[open] {
+  animation: otk-welcome-appear 0.25s ease-out;
+}
+
+@keyframes otk-welcome-appear {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Телефоны */
+@media (max-width: 480px) {
+  .otk-welcome {
+    width: calc(100% - 24px);
+    border-radius: 19px;
+  }
+
+  .otk-welcome__content {
+    padding: 22px 19px;
+  }
+
+  .otk-welcome__emoji {
+    width: 50px;
+    height: 50px;
+    font-size: 27px;
+    margin-bottom: 16px;
+  }
+
+  .otk-welcome__features {
+    gap: 14px;
+    margin: 18px 0;
+    padding: 18px 0;
+  }
+
+  .otk-welcome__feature-icon {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+
+  .otk-welcome__start {
+    min-height: 50px;
+  }
+}
+
+/* Невысокие экраны */
+@media (max-height: 650px) {
+  .otk-welcome__features {
+    margin: 14px 0;
+    padding: 14px 0;
+    gap: 11px;
+  }
+}
+
+/* Уменьшение анимаций */
+@media (prefers-reduced-motion: reduce) {
+  .otk-welcome[open] {
+    animation: none;
+  }
+
+  .otk-welcome__start {
+    transition: none;
+  }
+}
+
+/* Отступ при переходе к меню */
+#menu-container,
+#category-tabs-container {
+  scroll-margin-top: 110px;
+}
+
+/* Блок обслуживаемой организации */
+.otk-welcome__organization {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+
+  margin: -4px 0 22px;
+  padding: 15px;
+
+  background: #f0f7f2;
+  border: 1px solid #d8e9dd;
+  border-radius: 14px;
+}
+
+.otk-welcome__organization-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 42px;
+
+  width: 42px;
+  height: 42px;
+
+  background: #dcefe2;
+  border-radius: 11px;
+}
+
+.otk-welcome__organization-icon img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.otk-welcome__organization-content {
+  min-width: 0;
+}
+
+.otk-welcome__organization-label {
+  display: block;
+  margin-bottom: 5px;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  color: var(--primary, #1d6746);
+}
+
+.otk-welcome__organization-content strong {
+  display: block;
+  margin-bottom: 5px;
+
+  font-size: 14px;
+  font-weight: 750;
+  color: #173d29;
+}
+
+.otk-welcome__organization-content p {
+  margin: 0;
+
+  font-size: 12px;
+  line-height: 1.6;
+  color: #577363;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 480px) {
+  .otk-welcome__organization {
+    gap: 11px;
+    padding: 12px;
+    margin-bottom: 18px;
+  }
+
+  .otk-welcome__organization-icon {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+
+  .otk-welcome__organization-icon img {
+    width: 19px;
+    height: 19px;
+  }
+
+  .otk-welcome__organization-content strong {
+    font-size: 13px;
+  }
+
+  .otk-welcome__organization-content p {
+    font-size: 11px;
+  }
+}

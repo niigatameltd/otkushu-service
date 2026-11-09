@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>otkushu - Услуги доставки обедов в Якутске</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="/icons/fav/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/icons/fav/favicon.svg" />
+    <link rel="shortcut icon" href="/icons/fav/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/icons/fav/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/icons/fav/site.webmanifest" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/navigation.css" />
+    <link rel="stylesheet" href="/styles/bite-game.css" />
+  </head>
+  <body>
+    <!-- Навигационная шапка -->
+    <!-- Навигационная шапка -->
+    <nav class="main-nav" id="mainNav" aria-label="Основная навигация">
+      <div class="nav-header-top">
+        <a href="/" class="main-nav-logo" aria-label="otkushu - на главную">
+          <span class="main-nav-logo-text">
+            <strong>otkushu</strong>
+            <small>организация питания</small>
+          </span>
+        </a>
+
+        <!-- toggleMenu() -->
+        <button
+          class="hamburger-btn"
+          type="button"
+          onclick="toggleMenu()"
+          aria-label="Открыть меню"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+      <div class="main-nav-links" id="primary-navigation">
+        <!-- FAQ -->
+        <a href="/#faq" class="main-nav-link otk-faq-link">
+          <span class="main-nav-link-icon"
+            ><img
+              src="/icons/circle-question-mark.svg"
+              alt=""
+              class="icon headicon"
+          /></span>
+          <span>О сервисе</span>
+        </a>
+        <!-- FAQ END -->
+        <a href="/" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/menu.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Меню</span>
+        </a>
+        <a href="/cart.html" class="main-nav-link" id="cart-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/shopping-cart.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Корзина</span>
+        </a>
+        <a href="/orders.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/list-ordered.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Мои заказы</span>
+        </a>
+        <a href="/stats.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/chart-bar-big.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Статистика</span>
+        </a>
+        <a href="/profile.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/user-round-star.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Профиль</span>
+        </a>
+      </div>
+
+      <!-- Сохраняем слот -->
+      <div id="user-auth-slot" class="main-nav-auth auth-slot-hidden">
+        <a href="/login.html" class="main-nav-login">Войти</a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div id="header-placeholder"></div>
+
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 20px;
+        "
+      >
+        <h1 style="margin: 0">Личный кабинет</h1>
+        <button
+          onclick="loadProfileData()"
+          style="
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            display: none;
+          "
+        >
+          Обновить
+        </button>
+      </div>
+
+      <div
+        id="profile-card"
+        style="
+          background: #fff;
+          padding: 30px;
+          border-radius: 8px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          margin-bottom: 20px;
+        "
+      >
+        <p style="text-align: center; color: #7f8c8d">Загрузка данных...</p>
+      </div>
+
+      <!-- Ежедневная игра «Откусить!». Управляется /scripts/bite-game.js. -->
+      <section
+        id="bite-game"
+        class="bite-game"
+        aria-label="Ежедневная игра Откусить"
+        hidden
+      >
+        <h2>Откусить!</h2>
+        <p class="bite-game-lead">Испытай удачу и выиграй купон на скидку!</p>
+
+        <div id="bite-reel" class="bite-reel" aria-hidden="true">🍔</div>
+
+        <button
+          id="bite-play-button"
+          type="button"
+          class="bite-game-button"
+          disabled
+        >
+          Загрузка...
+        </button>
+
+        <p id="bite-result" class="bite-result" aria-live="polite">
+          Проверяем сегодняшнюю попытку...
+        </p>
+        <p id="bite-caption" class="bite-caption">
+          Новый день наступает в 00:00 по времени Якутска.
+        </p>
+      </section>
+    </div>
+
+    <!-- Подвал сайта: строго по требованиям ЮKassa -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>О сервисе «otkushu»</h4>
+          <p>
+            <b>Услуга</b> по организации и доставки индивидуального питания в
+            г.Якутск
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Правовая информация</h4>
+          <a href="/offer.html">Пользовательское соглашение (Оферта)</a>
+          <a href="/delivery-terms.html">Правила доставки и возврата</a>
+        </div>
+        <div class="footer-section">
+          <h4>Контакты и реквизиты</h4>
+          <div class="footer-contact-item">
+            <img src="/icons/map-pin-house.svg" alt="" class="footicon" />
+            <span>г. Якутск, Республика Саха (Якутия)</span>
+          </div>
+          <div class="footer-contact-item">
+            <img src="/icons/phone-log.svg" alt="" class="footicon" />
+            <span>+7 (996) 120-77-94</span>
+          </div>
+          <div class="footer-contact-item">
+            <img src="/icons/mail.svg" alt="" class="footicon" />
+            <span>niigatameltd@yandex.ru</span>
+          </div>
+          <!-- <p style="margin-top: 12px; font-size: 12px">
+            Самозанятый Васильев П.Н.<br />
+            ИНН: 143527252504<br />
+            Плательщик НПД
+          </p> -->
+        </div>
+      </div>
+      <div class="footer-bottom">
+        otkushu &copy; 2026 - Все права защищены. Прием платежей защищен
+        протоколом HTTPS и ЮKassa.
+      </div>
+    </footer>
+
+    <script src="scripts/preload.js"></script>
+    <script>
+      function escapeProfileText(value) {
+        return String(value ?? "").replace(/[&<>"']/g, (char) => {
+          const map = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+          };
+
+          return map[char];
+        });
+      }
+
+      async function loadProfileData() {
+        try {
+          const [profileRes, settingsRes, couponsRes] = await Promise.all([
+            fetch("/api/auth/profile", { cache: "no-store" }),
+            fetch("/api/settings", { cache: "no-store" }),
+            fetch("/api/coupons/availability", {
+              cache: "no-store",
+            }),
+          ]);
+
+          if (profileRes.status === 401 || couponsRes.status === 401) {
+            window.location.href = "/login.html";
+            return;
+          }
+
+          if (!profileRes.ok || !settingsRes.ok || !couponsRes.ok) {
+            throw new Error("Ошибка загрузки данных профиля");
+          }
+
+          const user = await profileRes.json();
+          const settings = await settingsRes.json();
+          const coupons = await couponsRes.json();
+
+          const card = document.getElementById("profile-card");
+
+          const deadlineHour = settings.ORDER_DEADLINE_HOUR ?? 12;
+
+          const total = Number(coupons.total);
+          const reserved = Number(coupons.reserved);
+          const available = Number(coupons.available);
+
+          if (
+            !Number.isInteger(total) ||
+            !Number.isInteger(reserved) ||
+            !Number.isInteger(available) ||
+            total < 0 ||
+            reserved < 0 ||
+            available < 0
+          ) {
+            throw new Error("Некорректные данные о купонах");
+          }
+
+          card.innerHTML = `
+        <h2 class="profile-heading">
+          👤 ${escapeProfileText(user.name)}
+        </h2>
+
+        <p>
+          <strong>Номер телефона:</strong>
+          ${escapeProfileText(user.phone_number)}
+        </p>
+
+
+        <p><strong>Организация:</strong> ${escapeProfileText(user.organization_name)}</p>
+
+        <div class="profile-coupons">
+          <h3>🎫 Мои купоны</h3>
+
+          <div class="profile-coupon-grid">
+
+            <div class="profile-coupon-stat">
+              <span>Всего</span>
+              <strong>${total}</strong>
+            </div>
+
+            <div class="profile-coupon-stat">
+              <span>В резерве</span>
+              <strong>${reserved}</strong>
+            </div>
+
+            <div class="profile-coupon-stat">
+              <span>Доступно</span>
+              <strong>${available}</strong>
+            </div>
+
+          </div>
+
+          <p class="profile-coupon-note">
+            Купоны резервируются при оформлении
+            заказа и окончательно списываются
+            после успешной оплаты.
+          </p>
+
+          <p class="profile-coupon-note">
+            Объединяйтесь с коллегами по организации
+            до ${escapeProfileText(deadlineHour)}:00,
+            набирайте общую сумму и получайте
+            новые купоны на скидку!
+          </p>
+        </div>
+      `;
+        } catch (error) {
+          console.error("Ошибка профиля:", error);
+
+          document.getElementById("profile-card").innerHTML = `
+        <p style="color: red; text-align: center;">
+          Не удалось загрузить данные профиля.
+        </p>
+      `;
+        }
+      }
+
+      loadProfileData();
+    </script>
+    <script src="/scripts/navigation-helper.js"></script>
+    <script src="/scripts/bite-game.js"></script>
+  </body>
+</html>

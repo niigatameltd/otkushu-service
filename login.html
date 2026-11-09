@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>otkushu - Услуги доставки обедов в Якутске</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="/icons/fav/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/icons/fav/favicon.svg" />
+    <link rel="shortcut icon" href="/icons/fav/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/icons/fav/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/icons/fav/site.webmanifest" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/navigation.css" />
+  </head>
+  <body>
+    <!-- Навигационная шапка -->
+    <nav class="main-nav" id="mainNav" aria-label="Основная навигация">
+      <div class="nav-header-top">
+        <a href="/" class="main-nav-logo" aria-label="otkushu - на главную">
+          <span class="main-nav-logo-text">
+            <strong>otkushu</strong>
+            <small>организация питания</small>
+          </span>
+        </a>
+
+        <!-- toggleMenu() -->
+        <button
+          class="hamburger-btn"
+          type="button"
+          onclick="toggleMenu()"
+          aria-label="Открыть меню"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+      <div class="main-nav-links" id="primary-navigation">
+        <!-- FAQ -->
+        <a href="/#faq" class="main-nav-link otk-faq-link">
+          <span class="main-nav-link-icon"
+            ><img
+              src="/icons/circle-question-mark.svg"
+              alt=""
+              class="icon headicon"
+          /></span>
+          <span>О сервисе</span>
+        </a>
+        <!-- FAQ END -->
+        <a href="/" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/menu.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Меню</span>
+        </a>
+        <a href="/cart.html" class="main-nav-link" id="cart-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/shopping-cart.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Корзина</span>
+        </a>
+        <a href="/orders.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/list-ordered.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Мои заказы</span>
+        </a>
+        <a href="/stats.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/chart-bar-big.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Статистика</span>
+        </a>
+        <a href="/profile.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/user-round-star.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Профиль</span>
+        </a>
+      </div>
+
+      <!-- Сохраняем слот -->
+      <div id="user-auth-slot" class="main-nav-auth auth-slot-hidden">
+        <a href="/login.html" class="main-nav-login">Войти</a>
+      </div>
+    </nav>
+    <div class="container" style="max-width: 400px; margin-top: 50px">
+      <div id="header-placeholder"></div>
+
+      <div
+        style="
+          background: #fff;
+          padding: 25px;
+          border-radius: 8px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        "
+      >
+        <h2
+          id="form-title"
+          style="margin-top: 0; text-align: center; color: #2c3e50"
+        >
+          Вход в систему
+        </h2>
+
+        <!-- Переключатель между Входом и Регистрацией -->
+        <div
+          style="
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+          "
+        >
+          <button
+            id="tab-login"
+            style="
+              flex: 1;
+              background: none;
+              border: none;
+
+              font-weight: bold;
+              cursor: pointer;
+              color: #16a34a;
+              border-bottom: 2px solid #16a34a;
+              padding-bottom: 5px;
+            "
+            onclick="switchMode('login')"
+          >
+            Вход
+          </button>
+          <button
+            id="tab-register"
+            style="
+              flex: 1;
+              background: none;
+              border: none;
+              font-weight: bold;
+              cursor: pointer;
+              color: #7f8c8d;
+              padding-bottom: 5px;
+            "
+            onclick="switchMode('register')"
+          >
+            Регистрация
+          </button>
+        </div>
+
+        <form id="auth-form">
+          <!-- Поле Имени (только для регистрации) -->
+          <div
+            id="name-field-container"
+            style="display: none; margin-bottom: 15px"
+          >
+            <label style="display: block; margin-bottom: 5px; font-weight: bold"
+              >Ваше имя:</label
+            >
+            <input
+              type="text"
+              id="name"
+              placeholder="Иван"
+              style="
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+              "
+            />
+          </div>
+
+          <!-- Выпадающий список организаций (только для регистрации) -->
+          <div
+            id="org-field-container"
+            style="display: none; margin-bottom: 15px"
+          >
+            <label style="display: block; margin-bottom: 5px; font-weight: bold"
+              >Организация / Подразделение:</label
+            >
+            <select
+              id="organization_id"
+              style="
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                background: white;
+              "
+            >
+              <option value="">Загрузка организаций...</option>
+            </select>
+          </div>
+
+          <!-- Номер телефона (обязателен везде) -->
+          <!-- Номер телефона (обязателен везде) -->
+          <div style="margin-bottom: 15px">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold"
+              >Номер телефона:</label
+            >
+            <input
+              type="text"
+              id="phone_number"
+              placeholder="+79149996655"
+              style="
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+              "
+              required
+            />
+          </div>
+
+          <!-- Пин-код -->
+          <div style="margin-bottom: 20px">
+            <label
+              style="display: block; margin-bottom: 5px; font-weight: bold"
+              id="pin-label"
+              >Пин-код:</label
+            >
+            <input
+              type="password"
+              id="pin_code"
+              placeholder="6 цифр"
+              maxlength="6"
+              style="
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+              "
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            id="submit-btn"
+            style="
+              background: #16a34a;
+              color: white;
+              border: none;
+              padding: 12px;
+              border-radius: 5px;
+              cursor: pointer;
+              font-weight: bold;
+              width: 100%;
+              font-size: 16px;
+            "
+          >
+            Войти
+          </button>
+        </form>
+      </div>
+
+      <div id="footer-placeholder"></div>
+    </div>
+    <!-- Подвал сайта: строго по требованиям ЮKassa -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>О сервисе «otkushu»</h4>
+          <p>
+            <b>Услуга</b> по организации и доставки индивидуального питания в
+            г.Якутск
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Правовая информация</h4>
+          <a href="/offer.html">Пользовательское соглашение (Оферта)</a>
+          <a href="/delivery-terms.html">Правила доставки и возврата</a>
+        </div>
+        <div class="footer-section">
+          <h4>Контакты и реквизиты</h4>
+          <div class="footer-contact-item">
+            <img src="/icons/map-pin-house.svg" alt="" class="footicon" />
+            <span>г. Якутск, Республика Саха (Якутия)</span>
+          </div>
+          <div class="footer-contact-item">
+            <img src="/icons/phone-log.svg" alt="" class="footicon" />
+            <span>+7 (996) 120-77-94</span>
+          </div>
+          <div class="footer-contact-item">
+            <img src="/icons/mail.svg" alt="" class="footicon" />
+            <span>niigatameltd@yandex.ru</span>
+          </div>
+          <!-- <p style="margin-top: 12px; font-size: 12px">
+            Самозанятый Васильев П.Н.<br />
+            ИНН: 143527252504<br />
+            Плательщик НПД
+          </p> -->
+        </div>
+      </div>
+      <div class="footer-bottom">
+        otkushu &copy; 2026 - Все права защищены. Прием платежей защищен
+        протоколом HTTPS и ЮKassa.
+      </div>
+    </footer>
+    <script src="scripts/preload.js"></script>
+
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/navigation-helper.js"></script>
+    <script src="/scripts/toast.js"></script>
+  </body>
+</html>

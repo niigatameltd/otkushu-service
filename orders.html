@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>otkushu - Услуги доставки обедов в Якутске</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="/icons/fav/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/icons/fav/favicon.svg" />
+    <link rel="shortcut icon" href="/icons/fav/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/icons/fav/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/icons/fav/site.webmanifest" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/navigation.css" />
+  </head>
+  <body>
+    <!-- Навигационная шапка -->
+    <nav class="main-nav" id="mainNav" aria-label="Основная навигация">
+      <div class="nav-header-top">
+        <a href="/" class="main-nav-logo" aria-label="otkushu - на главную">
+          <span class="main-nav-logo-text">
+            <strong>otkushu</strong>
+            <small>организация питания</small>
+          </span>
+        </a>
+
+        <!-- toggleMenu() -->
+        <button
+          class="hamburger-btn"
+          type="button"
+          onclick="toggleMenu()"
+          aria-label="Открыть меню"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+      <div class="main-nav-links" id="primary-navigation">
+        <!-- FAQ -->
+        <a href="/#faq" class="main-nav-link otk-faq-link">
+          <span class="main-nav-link-icon"
+            ><img
+              src="/icons/circle-question-mark.svg"
+              alt=""
+              class="icon headicon"
+          /></span>
+          <span>О сервисе</span>
+        </a>
+        <!-- FAQ END -->
+        <a href="/" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/menu.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Меню</span>
+        </a>
+        <a href="/cart.html" class="main-nav-link" id="cart-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/shopping-cart.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Корзина</span>
+        </a>
+        <a href="/orders.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/list-ordered.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Мои заказы</span>
+        </a>
+        <a href="/stats.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/chart-bar-big.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Статистика</span>
+        </a>
+        <a href="/profile.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/user-round-star.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Профиль</span>
+        </a>
+      </div>
+
+      <!-- Сохраняем слот -->
+      <div id="user-auth-slot" class="main-nav-auth auth-slot-hidden">
+        <a href="/login.html" class="main-nav-login">Войти</a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div id="header-placeholder"></div>
+
+      <h1>История ваших заказов</h1>
+
+      <div id="orders-container">
+        <p style="text-align: center; color: #7f8c8d">Загрузка заказов...</p>
+      </div>
+    </div>
+
+    <!-- Подвал сайта: строго по требованиям ЮKassa -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>О сервисе «otkushu»</h4>
+          <p>
+            <b>Услуга</b> по организации и доставки индивидуального питания в
+            г.Якутск
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Правовая информация</h4>
+          <a href="/offer.html">Пользовательское соглашение (Оферта)</a>
+          <a href="/delivery-terms.html">Правила доставки и возврата</a>
+        </div>
+        <div class="footer-section">
+          <h4>Контакты и реквизиты</h4>
+          <div class="footer-contact-item">
+            <img src="/icons/map-pin-house.svg" alt="" class="footicon" />
+            <span>г. Якутск, Республика Саха (Якутия)</span>
+          </div>
+          <div class="footer-contact-item">
+            <img src="/icons/phone-log.svg" alt="" class="footicon" />
+            <span>+7 (996) 120-77-94</span>
+          </div>
+          <div class="footer-contact-item">
+            <img src="/icons/mail.svg" alt="" class="footicon" />
+            <span>niigatameltd@yandex.ru</span>
+          </div>
+          <!-- <p style="margin-top: 12px; font-size: 12px">
+            Самозанятый Васильев П.Н.<br />
+            ИНН: 143527252504<br />
+            Плательщик НПД
+          </p> -->
+        </div>
+      </div>
+      <div class="footer-bottom">
+        otkushu &copy; 2026 - Все права защищены. Прием платежей защищен
+        протоколом HTTPS и ЮKassa.
+      </div>
+    </footer>
+
+    <script src="scripts/preload.js"></script>
+    <script>
+      const money = (value) =>
+        new Intl.NumberFormat("ru-RU", {
+          style: "currency",
+          currency: "RUB",
+        }).format(Number(value));
+
+      const dateTime = (value) =>
+        new Date(value).toLocaleString("ru-RU", {
+          timeZone: "Asia/Yakutsk",
+          dateStyle: "medium",
+          timeStyle: "short",
+        });
+
+      const deliveryDate = (value) => {
+        if (!value) return "Не указана";
+
+        // Для DATE PostgreSQL может вернуть YYYY-MM-DD.
+        // Не используем new Date(), чтобы избежать сдвига даты.
+        const date = String(value).slice(0, 10);
+        const [year, month, day] = date.split("-");
+
+        return `${day}.${month}.${year}`;
+      };
+
+      // Экранируем пользовательский и текстовый контент,
+      // прежде чем вставлять его через innerHTML.
+      function escapeHtml(value) {
+        return String(value ?? "").replace(/[&<>"']/g, (char) => {
+          const symbols = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+          };
+
+          return symbols[char];
+        });
+      }
+
+      // Настройки отображения каждого статуса заказа.
+      const orderStatuses = {
+        pending_payment: {
+          title: "Ожидает оплаты",
+          className: "order-status-pending",
+          description: "Платёж ещё не подтверждён. Заказ ожидает оплаты.",
+        },
+
+        active: {
+          title: "Оплачен",
+          className: "order-status-paid",
+          description: "Оплата подтверждена. Заказ принят в обработку.",
+        },
+
+        cancelled: {
+          title: "Оплата отменена",
+          className: "order-status-cancelled",
+          description: "Платёж отменён. Заказ не будет выполнен.",
+        },
+      };
+
+      async function loadMyOrders() {
+        const container = document.getElementById("orders-container");
+
+        container.innerHTML = `
+    <p class="orders-message">Загрузка заказов...</p>
+  `;
+
+        try {
+          const res = await fetch("/api/my-orders", {
+            credentials: "same-origin",
+            cache: "no-store",
+          });
+
+          if (res.status === 401) {
+            window.location.href = "/login.html";
+            return;
+          }
+
+          if (!res.ok) {
+            throw new Error(`HTTP ${res.status}`);
+          }
+
+          const orders = await res.json();
+
+          if (!Array.isArray(orders)) {
+            throw new Error("Сервер вернул неверный формат данных");
+          }
+
+          if (orders.length === 0) {
+            container.innerHTML = `
+        <p class="orders-message">
+          У вас пока нет оформленных заказов.
+        </p>
+      `;
+            return;
+          }
+
+          let html = "";
+
+          orders.forEach((order) => {
+            const resumePaymentHtml =
+              order.status === "pending_payment"
+                ? `
+      <button
+        type="button"
+        class="resume-payment-btn"
+        data-order-id="${Number(order.id)}"
+      >
+        Продолжить оплату
+      </button>
+    `
+                : "";
+            const status = orderStatuses[order.status] ?? {
+              title: "Статус уточняется",
+              className: "order-status-unknown",
+              description: "Информация о заказе уточняется.",
+            };
+
+            let itemsHtml = "";
+
+            order.items.forEach((item) => {
+              const itemTotal = Number(item.price) * Number(item.quantity);
+
+              itemsHtml += `
+          <div class="order-item">
+            <span>
+              ${escapeHtml(item.name)}
+              <span class="order-item-quantity">
+                × ${Number(item.quantity)}
+              </span>
+            </span>
+
+            <strong>${money(itemTotal)}</strong>
+          </div>
+        `;
+            });
+
+            let couponBadge = "";
+
+            if (order.used_coupon) {
+              let couponText;
+
+              if (order.coupon_deducted === true) {
+                couponText = "🎫 Купон списан";
+              } else if (order.status === "cancelled") {
+                couponText = "🎫 Купон не списан";
+              } else if (order.status === "pending_payment") {
+                couponText = "🎫 Купон зарезервирован";
+              } else {
+                couponText = "🎫 Статус купона уточняется";
+              }
+
+              couponBadge = `
+    <span class="order-coupon">
+      ${couponText}
+    </span>
+  `;
+            }
+            const commentHtml = order.delivery_comment
+              ? `
+    <div class="order-delivery-comment">
+      <strong>Комментарий к доставке:</strong>
+      <p>${escapeHtml(order.delivery_comment)}</p>
+    </div>
+  `
+              : "";
+            html += `
+        <article class="order-card">
+          <div class="order-card-header">
+            <div>
+              <h2>Заказ №${Number(order.id)}</h2>
+
+              <span class="order-created">
+                Создан: ${dateTime(order.created_at)}
+              </span>
+            </div>
+
+            <span class="order-status ${status.className}">
+              ${status.title}
+            </span>
+          </div>
+
+          <div class="order-delivery">
+            Дата доставки:
+            <strong>${deliveryDate(order.delivery_date)}</strong>
+          </div>
+
+          <div class="order-items">
+            ${itemsHtml}
+            ${commentHtml}
+          </div>
+          
+
+          <div class="order-card-footer">
+            <div class="order-coupon-container">
+              ${couponBadge}
+            </div>
+
+            <div class="order-total">
+              <span>Итого</span>
+              <strong>${money(order.total_price)}</strong>
+              ${resumePaymentHtml}
+            </div>
+          </div>
+
+          <p class="order-status-description">
+            ${status.description}
+          </p>
+        </article>
+      `;
+          });
+
+          container.innerHTML = html;
+        } catch (error) {
+          console.error("Ошибка загрузки заказов:", error);
+
+          container.innerHTML = `
+      <p class="orders-message orders-error">
+        Не удалось загрузить заказы.
+        Попробуйте обновить страницу.
+      </p>
+    `;
+        }
+      }
+
+      loadMyOrders();
+
+      // Продолжение оплаты уже созданного заказа.
+
+      document.addEventListener("click", async (event) => {
+        const button = event.target.closest(".resume-payment-btn");
+
+        if (!button || button.disabled) {
+          return;
+        }
+
+        const orderId = Number(button.dataset.orderId);
+
+        if (!Number.isSafeInteger(orderId) || orderId <= 0) {
+          alert("Некорректный номер заказа");
+          return;
+        }
+
+        button.disabled = true;
+
+        const previousText = button.textContent;
+        button.textContent = "Проверяем оплату...";
+
+        try {
+          // Сервер сверит статус заказа с ЮKassa.
+          const response = await fetch(
+            `/api/orders/${orderId}/resume-payment`,
+            {
+              method: "POST",
+              credentials: "same-origin",
+              cache: "no-store",
+            },
+          );
+
+          const result = await response.json();
+
+          if (!response.ok) {
+            alert(result.error || "Не удалось продолжить оплату");
+
+            // Если заказ уже оплачен или отменён,
+            // обновляем список заказов.
+            if (response.status === 409) {
+              window.location.reload();
+            }
+
+            return;
+          }
+
+          const paymentUrl = result.confirmation_url;
+
+          if (
+            typeof paymentUrl !== "string" ||
+            !paymentUrl.startsWith("https://")
+          ) {
+            throw new Error("Некорректная ссылка оплаты");
+          }
+
+          // Важно: переходим к СТАРОМУ платежу.
+          window.location.assign(paymentUrl);
+        } catch (error) {
+          console.error("Ошибка продолжения оплаты:", error);
+
+          alert(
+            "Не удалось открыть страницу оплаты. " + "Повторите попытку позже.",
+          );
+        } finally {
+          button.disabled = false;
+          button.textContent = previousText;
+        }
+      });
+    </script>
+    <script src="scripts/navigation-helper.js"></script>
+  </body>
+</html>

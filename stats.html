@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1d6746" />
+    <title>Статистика и командная цель — otkushu</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="/icons/fav/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/icons/fav/favicon.svg" />
+    <link rel="shortcut icon" href="/icons/fav/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/icons/fav/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/icons/fav/site.webmanifest" />
+
+    <!-- Порядок подключения важен: стили страницы идут последними -->
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/navigation.css" />
+    <link rel="stylesheet" href="/styles/stats.css" />
+  </head>
+  <body>
+    <!-- Твоя существующая навигация: сохранены все иконки, ссылки и ID -->
+    <nav class="main-nav" id="mainNav" aria-label="Основная навигация">
+      <div class="nav-header-top">
+        <a href="/" class="main-nav-logo" aria-label="otkushu — на главную">
+          <span class="main-nav-logo-text">
+            <strong>otkushu</strong>
+            <small>организация питания</small>
+          </span>
+        </a>
+        <button
+          class="hamburger-btn"
+          type="button"
+          onclick="toggleMenu()"
+          aria-label="Открыть меню"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+      <div class="main-nav-links" id="primary-navigation">
+        <a href="/#faq" class="main-nav-link otk-faq-link">
+          <span class="main-nav-link-icon"
+            ><img
+              src="/icons/circle-question-mark.svg"
+              alt=""
+              class="icon headicon"
+          /></span>
+          <span>О сервисе</span>
+        </a>
+        <a href="/" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/menu.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Меню</span>
+        </a>
+        <a href="/cart.html" class="main-nav-link" id="cart-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/shopping-cart.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Корзина</span>
+        </a>
+        <a href="/orders.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/list-ordered.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Мои заказы</span>
+        </a>
+        <a href="/stats.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/chart-bar-big.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Статистика</span>
+        </a>
+        <a href="/profile.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/user-round-star.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Профиль</span>
+        </a>
+      </div>
+
+      <div id="user-auth-slot" class="main-nav-auth auth-slot-hidden">
+        <a href="/login.html" class="main-nav-login">Войти</a>
+      </div>
+    </nav>
+
+    <main class="stats-page" id="main-content">
+      <div id="header-placeholder" hidden></div>
+
+      <section class="stats-hero" aria-labelledby="stats-page-title">
+        <div class="stats-hero__copy">
+          <span class="stats-eyebrow">
+            <img src="/icons/chart-bar-big.svg" alt="" />
+            Командная статистика
+          </span>
+          <h1 id="stats-page-title">
+            Вместе к общей цели для получения купона
+          </h1>
+          <p>
+            Следите за сбором заказов вашей организации и узнайте, сколько
+            осталось до достижения цели и получения купона.
+          </p>
+          <div class="stats-hero__actions">
+            <button type="button" id="stats-refresh" class="stats-refresh">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M20 7v5h-5" />
+                <path d="M4 17v-5h5" />
+                <path d="M5.6 9A7 7 0 0 1 18 7l2 5M4 12l2 5a7 7 0 0 0 12.4-2" />
+              </svg>
+              Обновить данные
+            </button>
+            <span class="stats-updated" id="stats-updated" aria-live="off"
+              >Загружаем статистику…</span
+            >
+          </div>
+        </div>
+        <div class="stats-hero__visual" aria-hidden="true">
+          <div class="stats-hero__visual-inner">
+            <div class="stats-hero__visual-label">Общий прогресс</div>
+            <div
+              class="stats-hero__ring"
+              id="stats-overall-ring"
+              role="progressbar"
+              aria-label="Общий прогресс достижения целей"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
+              <div class="stats-hero__ring-center">
+                <strong id="stats-overall-percent">—</strong>
+                <span>от цели</span>
+              </div>
+            </div>
+            <div class="stats-hero__visual-caption" id="stats-overall-caption">
+              Получаем данные сервера…
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-summary" aria-label="Общие показатели">
+        <div class="stats-summary__item">
+          <div class="stats-summary__icon">
+            <img src="/icons/shopping-cart.svg" alt="" />
+          </div>
+          <div class="stats-summary__body">
+            <span class="stats-summary__label">Собрано заказов на сумму</span>
+            <strong class="stats-summary__value" id="stats-total-sum">—</strong>
+          </div>
+        </div>
+        <div class="stats-summary__item">
+          <div class="stats-summary__icon">
+            <img src="/icons/chart-bar-big.svg" alt="" />
+          </div>
+          <div class="stats-summary__body">
+            <span class="stats-summary__label">Общая цель</span>
+            <strong class="stats-summary__value" id="stats-total-goal"
+              >—</strong
+            >
+          </div>
+        </div>
+        <div class="stats-summary__item">
+          <div class="stats-summary__icon">
+            <img src="/icons/list-ordered.svg" alt="" />
+          </div>
+          <div class="stats-summary__body">
+            <span class="stats-summary__label">Всего заказов</span>
+            <strong class="stats-summary__value" id="stats-total-orders"
+              >—</strong
+            >
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="stats-period"
+        id="info-banner"
+        aria-live="polite"
+        aria-label="Период сбора заказов"
+      >
+        <div class="stats-period__icon" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 7v5l3 2" />
+          </svg>
+        </div>
+        <div class="stats-period__body">
+          <span class="stats-period__status" id="stats-period-status"
+            >Приём заказов открыт</span
+          >
+          <h2 id="stats-period-title">Уточняем дату сбора…</h2>
+          <p id="stats-period-description">
+            Получаем актуальные данные сервера.
+          </p>
+        </div>
+        <div class="stats-period__date">
+          <span>Сбор на дату</span>
+          <strong id="stats-period-date">—</strong>
+        </div>
+      </section>
+
+      <section class="stats-section" aria-labelledby="stats-section-title">
+        <div class="stats-section__heading">
+          <div>
+            <h2 id="stats-section-title">Прогресс организаций</h2>
+            <p>Общая сумма заказов и достижение командной цели.</p>
+          </div>
+          <span id="stats-org-count" class="stats-org-count" hidden></span>
+        </div>
+        <div
+          id="stats-container"
+          class="stats-organizations"
+          aria-live="polite"
+          aria-busy="true"
+        >
+          <div class="stats-state stats-state--loading" role="status">
+            <span class="stats-spinner" aria-hidden="true"></span>
+            <strong>Загружаем статистику…</strong>
+            <p>Проверяем актуальные заказы.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="stats-footnote">
+        <p>Купон выдается всем заказавшим за дату сбора.</p>
+      </div>
+    </main>
+
+    <!-- Сохранён подвал сайта -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>О сервисе «otkushu»</h4>
+          <p>
+            <b>Услуга</b> по организации и доставке индивидуального питания в г.
+            Якутске.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Правовая информация</h4>
+          <a href="/offer.html">Пользовательское соглашение (Оферта)</a>
+          <a href="/delivery-terms.html">Правила доставки и возврата</a>
+        </div>
+        <div class="footer-section">
+          <h4>Контакты и реквизиты</h4>
+          <div class="footer-contact-item">
+            <img src="/icons/map-pin-house.svg" alt="" class="footicon" />
+            <span>г. Якутск, Республика Саха (Якутия)</span>
+          </div>
+          <div class="footer-contact-item">
+            <img src="/icons/phone-log.svg" alt="" class="footicon" />
+            <span>+7 (996) 120-77-94</span>
+          </div>
+          <div class="footer-contact-item">
+            <img src="/icons/mail.svg" alt="" class="footicon" />
+            <span>niigatameltd@yandex.ru</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        otkushu &copy; 2026 - Все права защищены. Приём платежей защищён
+        протоколом HTTPS и ЮKassa.
+      </div>
+    </footer>
+
+    <script src="/scripts/preload.js"></script>
+    <script src="/scripts/navigation-helper.js"></script>
+    <script src="/scripts/stats.js"></script>
+  </body>
+</html>

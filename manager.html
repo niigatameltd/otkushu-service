@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Панель менеджера — otkushu</title>
+
+    <link rel="icon" type="image/svg+xml" href="/icons/fav/favicon.svg" />
+
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/navigation.css" />
+
+    <style>
+      [hidden] {
+        display: none !important;
+      }
+
+      .manager-page {
+        max-width: 1150px;
+        margin: 0 auto;
+      }
+
+      .manager-heading {
+        text-align: left;
+        margin-bottom: 6px;
+      }
+
+      .manager-subtitle {
+        color: var(--text-muted);
+        margin: 0 0 25px;
+        font-size: 14px;
+      }
+
+      .manager-section {
+        background: #fff;
+        border: 1px solid var(--border-color);
+        border-radius: 18px;
+        padding: 22px;
+        margin-bottom: 24px;
+      }
+
+      .manager-section h2 {
+        margin: 0 0 18px;
+        font-size: 19px;
+      }
+
+      .manager-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .manager-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        min-width: 0;
+      }
+
+      .manager-field label {
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .manager-field input,
+      .manager-field select,
+      .manager-field textarea,
+      .manager-search input,
+      .manager-search select {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        padding: 11px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        color: var(--text-main);
+        background: #fff;
+        font: inherit;
+        font-size: 14px;
+      }
+
+      .manager-field textarea {
+        resize: vertical;
+      }
+
+      .manager-button {
+        border: none;
+        border-radius: 10px;
+        padding: 11px 16px;
+        font: inherit;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        background: var(--primary);
+        color: #fff;
+      }
+
+      .manager-button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .manager-button.secondary {
+        background: #e2e8f0;
+        color: #334155;
+      }
+
+      .manager-button.danger {
+        background: #dc2626;
+        color: white;
+      }
+
+      .manager-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .manager-summary {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .manager-stat {
+        padding: 16px;
+        background: #f8fafc;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        min-width: 0;
+      }
+
+      .manager-stat strong {
+        display: block;
+        font-size: 25px;
+      }
+
+      .manager-stat span {
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      .manager-search {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 190px auto;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+
+      .manager-order {
+        border: 1px solid var(--border-color);
+        border-radius: 14px;
+        padding: 18px;
+        margin-bottom: 14px;
+      }
+
+      .manager-order-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+
+      .manager-order-header h3 {
+        margin: 0;
+        font-size: 17px;
+      }
+
+      .manager-status {
+        padding: 6px 10px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .manager-status.active {
+        background: #dcfce7;
+        color: #15803d;
+      }
+
+      .manager-status.pending_payment {
+        background: #fef3c7;
+        color: #92400e;
+      }
+
+      .manager-status.cancelled {
+        background: #fee2e2;
+        color: #b91c1c;
+      }
+
+      .manager-order-info {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .manager-info-field {
+        min-width: 0;
+      }
+
+      .manager-info-field span {
+        display: block;
+        color: var(--text-muted);
+        font-size: 12px;
+      }
+
+      .manager-info-field strong {
+        display: block;
+        margin-top: 3px;
+        font-size: 14px;
+        overflow-wrap: anywhere;
+        white-space: pre-wrap;
+      }
+
+      .manager-order-items {
+        margin: 15px 0;
+        padding-top: 12px;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .manager-order-items h4 {
+        margin: 0 0 8px;
+        font-size: 14px;
+      }
+
+      .manager-order-items ul {
+        padding-left: 20px;
+        margin: 0;
+        font-size: 13px;
+      }
+
+      .manager-order-items li {
+        margin-bottom: 5px;
+      }
+
+      .manager-comment {
+        margin-top: 14px;
+        padding: 12px;
+        background: #f8fafc;
+        border-radius: 10px;
+        font-size: 13px;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+
+      .manager-order-total {
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid var(--border-color);
+        font-weight: 800;
+        font-size: 17px;
+      }
+
+      .manager-pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .manager-table-scroll {
+        overflow-x: auto;
+      }
+
+      .manager-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+
+      .manager-table th,
+      .manager-table td {
+        padding: 12px 9px;
+        border-bottom: 1px solid var(--border-color);
+        text-align: left;
+        vertical-align: middle;
+      }
+
+      .manager-table th {
+        color: var(--text-muted);
+        background: #f8fafc;
+      }
+
+      .manager-table img {
+        width: 52px;
+        height: 52px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .manager-quantity {
+        width: 75px;
+        padding: 8px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font: inherit;
+      }
+
+      .manager-table-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        min-width: 160px;
+      }
+
+      .manager-table-actions button {
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+
+      .manager-notice {
+        color: var(--text-muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 700px) {
+        .manager-section {
+          padding: 15px;
+        }
+
+        .manager-grid,
+        .manager-order-info {
+          grid-template-columns: 1fr;
+        }
+
+        .manager-summary {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .manager-search {
+          grid-template-columns: 1fr;
+        }
+
+        .manager-order {
+          padding: 14px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Навигационная шапка -->
+    <nav class="main-nav" id="mainNav" aria-label="Основная навигация">
+      <div class="nav-header-top">
+        <a href="/" class="main-nav-logo" aria-label="otkushu - на главную">
+          <span class="main-nav-logo-text">
+            <strong>otkushu</strong>
+            <small>организация питания</small>
+          </span>
+        </a>
+
+        <!-- toggleMenu() -->
+        <button
+          class="hamburger-btn"
+          type="button"
+          onclick="toggleMenu()"
+          aria-label="Открыть меню"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+      <div class="main-nav-links" id="primary-navigation">
+        <!-- FAQ -->
+        <a href="/#faq" class="main-nav-link otk-faq-link">
+          <span class="main-nav-link-icon"
+            ><img
+              src="/icons/circle-question-mark.svg"
+              alt=""
+              class="icon headicon"
+          /></span>
+          <span>О сервисе</span>
+        </a>
+        <!-- FAQ END -->
+        <a href="/" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/menu.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Меню</span>
+        </a>
+        <a href="/cart.html" class="main-nav-link" id="cart-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/shopping-cart.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Корзина</span>
+        </a>
+        <a href="/orders.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/list-ordered.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Мои заказы</span>
+        </a>
+        <a href="/stats.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/chart-bar-big.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Статистика</span>
+        </a>
+        <a href="/profile.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/user-round-star.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Профиль</span>
+        </a>
+      </div>
+
+      <!-- Сохраняем слот -->
+      <div id="user-auth-slot" class="main-nav-auth auth-slot-hidden">
+        <a href="/login.html" class="main-nav-login">Войти</a>
+      </div>
+    </nav>
+
+    <main class="container manager-page">
+      <h1 class="manager-heading">Панель менеджера</h1>
+
+      <p class="manager-subtitle">
+        Управление меню, настройками и просмотр заказов.
+      </p>
+
+      <p id="manager-access-message">Проверяем права доступа...</p>
+
+      <div id="manager-app" hidden>
+        <!-- Обзор -->
+        <section class="manager-section">
+          <h2>Обзор заказов</h2>
+
+          <div class="manager-summary">
+            <div class="manager-stat">
+              <strong id="stat-all">—</strong>
+              <span>Всего</span>
+            </div>
+
+            <div class="manager-stat">
+              <strong id="stat-paid">—</strong>
+              <span>Оплачено</span>
+            </div>
+
+            <div class="manager-stat">
+              <strong id="stat-pending">—</strong>
+              <span>Ожидают оплаты</span>
+            </div>
+
+            <div class="manager-stat">
+              <strong id="stat-cancelled">—</strong>
+              <span>Отменено</span>
+            </div>
+          </div>
+
+          <p class="manager-notice">
+            Статусы оплаты обновляются автоматически через ЮKassa. Менеджер не
+            меняет их вручную.
+          </p>
+        </section>
+
+        <!-- Восстановление PIN для покупателей (только менеджеры) -->
+        <section class="manager-section" aria-labelledby="pin-reset-heading">
+          <h2 id="pin-reset-heading">🔐 Сброс PIN покупателя</h2>
+          <p class="manager-notice">
+            Сначала убедитесь, что обращается владелец номера. Найдите
+            пользователя по телефону, затем установите новый шестизначный PIN.
+            Купоны и заказы не изменятся. Сброс PIN других менеджеров здесь
+            недоступен.
+          </p>
+
+          <form id="pin-lookup-form" class="manager-actions" autocomplete="off">
+            <div class="manager-field" style="flex: 1; min-width: 220px">
+              <label for="pin-lookup-phone">Телефон покупателя</label>
+              <input
+                id="pin-lookup-phone"
+                type="tel"
+                inputmode="tel"
+                placeholder="+79141234567"
+                maxlength="20"
+                required
+              />
+            </div>
+            <button type="submit" class="manager-button" id="pin-lookup-btn">
+              Найти пользователя
+            </button>
+          </form>
+
+          <p
+            id="pin-lookup-message"
+            class="manager-notice"
+            role="status"
+            aria-live="polite"
+          ></p>
+
+          <form id="pin-reset-form" hidden autocomplete="off">
+            <div class="manager-comment" id="pin-target-info"></div>
+            <div class="manager-grid" style="margin-top: 14px">
+              <div class="manager-field">
+                <label for="pin-new-code">Новый PIN покупателя (6 цифр)</label>
+                <input
+                  id="pin-new-code"
+                  type="password"
+                  inputmode="numeric"
+                  minlength="6"
+                  maxlength="6"
+                  pattern="[0-9]{6}"
+                  autocomplete="new-password"
+                  required
+                />
+              </div>
+              <div class="manager-field">
+                <label for="pin-manager-code"
+                  >Твой PIN менеджера (для подтверждения)</label
+                >
+                <input
+                  id="pin-manager-code"
+                  type="password"
+                  inputmode="numeric"
+                  minlength="4"
+                  maxlength="6"
+                  pattern="[0-9]{4,6}"
+                  autocomplete="current-password"
+                  required
+                />
+              </div>
+            </div>
+            <div class="manager-actions">
+              <button
+                type="submit"
+                id="pin-reset-btn"
+                class="manager-button danger"
+              >
+                Установить новый PIN
+              </button>
+            </div>
+          </form>
+          <p
+            id="pin-reset-message"
+            class="manager-notice"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </section>
+
+        <!-- Настройки -->
+        <section class="manager-section">
+          <h2>Системные настройки</h2>
+
+          <form id="settings-form">
+            <div class="manager-grid">
+              <div class="manager-field">
+                <label for="setting-goal"> Цель организации, ₽ </label>
+                <input
+                  id="setting-goal"
+                  name="goal_amount"
+                  type="number"
+                  min="1"
+                  required
+                />
+              </div>
+
+              <div class="manager-field">
+                <label for="setting-deadline"> Час дедлайна (0–23) </label>
+                <input
+                  id="setting-deadline"
+                  name="deadline_hour"
+                  type="number"
+                  min="0"
+                  max="23"
+                  required
+                />
+              </div>
+
+              <div class="manager-field">
+                <label for="setting-discount"> Скидка по купону, % </label>
+                <input
+                  id="setting-discount"
+                  name="discount_percent"
+                  type="number"
+                  min="0"
+                  max="99.99"
+                  step="0.01"
+                  required
+                />
+              </div>
+
+              <div class="manager-field">
+                <label for="setting-fee"> Доставка до офиса, ₽ </label>
+                <input
+                  id="setting-fee"
+                  name="delivery_service_fee"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="manager-actions">
+              <button class="manager-button" type="submit">
+                Сохранить настройки
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Добавление блюда -->
+        <section class="manager-section">
+          <h2>Добавить блюдо</h2>
+
+          <form id="add-dish-form" enctype="multipart/form-data">
+            <div class="manager-grid">
+              <div class="manager-field">
+                <label for="dish-name">Название</label>
+                <input
+                  id="dish-name"
+                  name="name"
+                  type="text"
+                  maxlength="255"
+                  required
+                />
+              </div>
+
+              <div class="manager-field">
+                <label for="dish-category">Категория</label>
+                <select id="dish-category" name="category" required>
+                  <option value="ХОЛОДНЫЕ БЛЮДА">ХОЛОДНЫЕ БЛЮДА</option>
+                  <option value="ПЕРВЫЕ БЛЮДА">ПЕРВЫЕ БЛЮДА</option>
+                  <option value="ГОРЯЧИЕ БЛЮДА">ГОРЯЧИЕ БЛЮДА</option>
+                  <option value="ГАРНИРЫ">ГАРНИРЫ</option>
+                  <option value="МУЧНЫЕ ИЗДЕЛИЯ">МУЧНЫЕ ИЗДЕЛИЯ</option>
+                  <option value="НАПИТКИ">НАПИТКИ</option>
+                </select>
+              </div>
+
+              <div class="manager-field">
+                <label for="dish-price">Цена, ₽</label>
+                <input
+                  id="dish-price"
+                  name="price"
+                  type="number"
+                  min="0.01"
+                  step="0.01"
+                  required
+                />
+              </div>
+
+              <div class="manager-field">
+                <label for="dish-quantity"> Количество в наличии </label>
+                <input
+                  id="dish-quantity"
+                  name="quantity"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value="10"
+                  required
+                />
+              </div>
+
+              <div class="manager-field">
+                <label for="dish-weight"> Вес / выход </label>
+                <input
+                  id="dish-weight"
+                  name="weight"
+                  type="text"
+                  placeholder="250 г"
+                />
+              </div>
+
+              <div class="manager-field">
+                <label for="dish-image"> Фотография </label>
+                <input
+                  id="dish-image"
+                  name="image"
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                />
+              </div>
+
+              <div class="manager-field" style="grid-column: 1 / -1">
+                <label for="dish-description"> Описание </label>
+                <textarea
+                  id="dish-description"
+                  name="description"
+                  rows="3"
+                  maxlength="2000"
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="manager-actions">
+              <button type="submit" class="manager-button">
+                Добавить блюдо
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Каталог -->
+        <section class="manager-section">
+          <h2>Каталог и остатки блюд</h2>
+
+          <div class="manager-actions" style="margin: 0 0 16px">
+            <button
+              id="refresh-dishes"
+              type="button"
+              class="manager-button secondary"
+            >
+              Обновить блюда
+            </button>
+          </div>
+
+          <div id="manager-dishes-container">Загрузка блюд...</div>
+        </section>
+
+        <!-- Заказы -->
+        <section class="manager-section">
+          <h2>Все заказы в системе</h2>
+
+          <form id="orders-filter-form" class="manager-search">
+            <input
+              id="orders-search"
+              type="search"
+              placeholder="ID, имя, телефон, организация..."
+            />
+
+            <select id="orders-status">
+              <option value="">Все статусы</option>
+              <option value="pending_payment">Ожидают оплаты</option>
+              <option value="active">Оплачены</option>
+              <option value="cancelled">Отменены</option>
+            </select>
+
+            <button type="submit" class="manager-button">Найти</button>
+          </form>
+
+          <div id="manager-orders-container">Загрузка заказов...</div>
+
+          <div class="manager-pagination">
+            <button
+              id="orders-prev"
+              type="button"
+              class="manager-button secondary"
+              disabled
+            >
+              Назад
+            </button>
+
+            <span id="orders-page-label">—</span>
+
+            <button
+              id="orders-next"
+              type="button"
+              class="manager-button secondary"
+              disabled
+            >
+              Далее
+            </button>
+          </div>
+
+          <div class="manager-actions">
+            <button
+              id="refresh-orders"
+              type="button"
+              class="manager-button secondary"
+            >
+              Обновить заказы
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="/scripts/preload.js"></script>
+    <script src="/scripts/navigation-helper.js"></script>
+    <script src="/scripts/manager.js"></script>
+  </body>
+</html>

@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>otkushu - Услуги доставки обедов в Якутске</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="/icons/fav/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/icons/fav/favicon.svg" />
+    <link rel="shortcut icon" href="/icons/fav/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/icons/fav/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/icons/fav/site.webmanifest" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/navigation.css" />
+
+    <style>
+      /* Стили страницы правил доставки */
+      .legal-content {
+        max-width: 800px;
+        line-height: 1.7;
+        font-size: 0.8rem;
+        font-weight: 400;
+      }
+
+      .legal-content h1,
+      .legal-content h2,
+      .legal-content h3,
+      .legal-content p {
+        font-size: 0.8rem;
+        font-weight: 400;
+      }
+
+      .legal-content strong,
+      .legal-content b {
+        font-weight: 400;
+      }
+
+      .site-footer {
+        font-size: 0.8rem;
+        font-weight: 400;
+      }
+
+      .site-footer h4,
+      .site-footer p,
+      .site-footer a,
+      .site-footer span,
+      .footer-bottom {
+        font-size: 0.8rem;
+        font-weight: 400;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Навигационная шапка -->
+    <nav class="main-nav" id="mainNav" aria-label="Основная навигация">
+      <div class="nav-header-top">
+        <a href="/" class="main-nav-logo" aria-label="otkushu - на главную">
+          <span class="main-nav-logo-text">
+            <strong>otkushu</strong>
+            <small>организация питания</small>
+          </span>
+        </a>
+
+        <!-- toggleMenu() -->
+        <button
+          class="hamburger-btn"
+          type="button"
+          onclick="toggleMenu()"
+          aria-label="Открыть меню"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+      <div class="main-nav-links" id="primary-navigation">
+        <!-- FAQ -->
+        <a href="/#faq" class="main-nav-link otk-faq-link">
+          <span class="main-nav-link-icon"
+            ><img
+              src="/icons/circle-question-mark.svg"
+              alt=""
+              class="icon headicon"
+          /></span>
+          <span>О сервисе</span>
+        </a>
+        <!-- FAQ END -->
+        <a href="/" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/menu.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Меню</span>
+        </a>
+        <a href="/cart.html" class="main-nav-link" id="cart-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/shopping-cart.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Корзина</span>
+        </a>
+        <a href="/orders.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/list-ordered.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Мои заказы</span>
+        </a>
+        <a href="/stats.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/chart-bar-big.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Статистика</span>
+        </a>
+        <a href="/profile.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/user-round-star.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Профиль</span>
+        </a>
+      </div>
+
+      <!-- Сохраняем слот -->
+      <div id="user-auth-slot" class="main-nav-auth auth-slot-hidden">
+        <a href="/login.html" class="main-nav-login">Войти</a>
+      </div>
+    </nav>
+
+    <div class="container legal-content">
+      <h1 style="text-align: left; margin-bottom: 20px">
+        Правила доставки и возврата денежных средств
+      </h1>
+      <p
+        style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 30px"
+      >
+        Информация для клиентов сервиса otkushu (г. Якутск)
+      </p>
+
+      <h2>1. Условия доставки</h2>
+      <p>
+        1.1. Доставка готовых обедов осуществляется централизованно в рабочие
+        дни по согласованным адресам организаций-партнеров в г. Якутске.
+      </p>
+      <p>
+        1.2. Заказы, оформленные и оплаченные до 11:00 часов текущего дня,
+        доставляются в обеденное время того же дня.
+      </p>
+      <p>
+        1.3. Получение заказа в организации производится уполномоченным лицом
+        или непосредственно Заказчиком по внутренней ведомости сервиса.
+      </p>
+
+      <h2>2. Правила отмены заказа и возврата средств</h2>
+      <p>
+        2.1. В связи с тем, что материалом услуги организации и доставки
+        являются скоропортящиеся продукты питания (готовые блюда), отмена
+        оформленного и оплаченного заказа возможна только до 11:00 текущего дня.
+      </p>
+      <p>
+        2.2. В случае отмены заказа до 11:00 денежные средства подлежат возврату
+        в полном объеме на банковскую карту, с которой была произведена оплата
+        через сервис юКасса
+      </p>
+      <p>
+        2.3. Возврат переведенных средств, в случае правомерной отмены,
+        осуществляется на ваш банковский счет в течение 5–30 рабочих дней (срок
+        зависит от Банка, выпустившего карту).
+      </p>
+      <p>
+        2.4. Претензии по качеству доставленной услуги организации и доставки
+        принимаются в день получения заказа по телефону +7 (996) 120-77-94 или
+        на электронную почту niigatameltd@yandex.ru.
+      </p>
+
+      <h2>3. Контактные данные</h2>
+      Самозанятый Васильев Павел Николаевич<br />
+      ИНН: 143527252504<br />
+      г. Якутск, Республика Саха (Якутия)<br />
+      Телефон: +7 (996) 120-77-94<br />
+      Email: niigatameltd@yandex.ru
+      <!-- <p
+        style="
+          margin-top: 30px;
+          background: var(--surface-color);
+          padding: 20px;
+          border-radius: var(--radius);
+          border: 1px solid var(--border-color);
+        "
+      >
+        Самозанятый Васильев Павел Николаевич<br />
+        ИНН: 143527252504<br />
+        г. Якутск, Республика Саха (Якутия)<br />
+        Телефон: +7 (996) 120-77-94<br />
+        Email: niigatameltd@yandex.ru
+      </p> -->
+    </div>
+
+    <!-- Подвал сайта: строго по требованиям ЮKassa -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>О сервисе «otkushu»</h4>
+          <p>
+            Услуга по организации и доставки индивидуального питания в г.Якутск
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Правовая информация</h4>
+          <a href="/offer.html">Пользовательское соглашение (Оферта)</a>
+          <a href="/delivery-terms.html">Правила доставки и возврата</a>
+        </div>
+        <div class="footer-section">
+          <h4>Контакты и реквизиты</h4>
+          <div class="footer-contact-item">
+            <img src="/icons/map-pin-house.svg" alt="" class="footicon" />
+            <span>г. Якутск, Республика Саха (Якутия)</span>
+          </div>
+          <div class="footer-contact-item">
+            <img src="/icons/phone-log.svg" alt="" class="footicon" />
+            <span>+7 (996) 120-77-94</span>
+          </div>
+          <div class="footer-contact-item">
+            <img src="/icons/mail.svg" alt="" class="footicon" />
+            <span>niigatameltd@yandex.ru</span>
+          </div>
+          <!-- <p style="margin-top: 12px; font-size: 12px">
+            Самозанятый Васильев П.Н.<br />
+            ИНН: 143527252504<br />
+            Плательщик НПД
+          </p> -->
+        </div>
+      </div>
+      <div class="footer-bottom">
+        otkushu &copy; 2026 - Все права защищены. Прием платежей защищен
+        протоколом HTTPS и ЮKassa.
+      </div>
+    </footer>
+    <script src="scripts/preload.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/navigation-helper.js"></script>
+  </body>
+</html>

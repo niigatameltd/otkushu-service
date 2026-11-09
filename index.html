@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>otkushu - Услуги доставки обедов в Якутске</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="/icons/fav/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/icons/fav/favicon.svg" />
+    <link rel="shortcut icon" href="/icons/fav/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/icons/fav/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/icons/fav/site.webmanifest" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/navigation.css" />
+    <link rel="stylesheet" href="/styles/welcome.css" />
+  </head>
+  <body>
+    <!-- Навигационная шапка -->
+    <nav class="main-nav" id="mainNav" aria-label="Основная навигация">
+      <div class="nav-header-top">
+        <a href="/" class="main-nav-logo" aria-label="otkushu - на главную">
+          <span class="main-nav-logo-text">
+            <strong>otkushu</strong>
+            <small>организация питания</small>
+          </span>
+        </a>
+
+        <!-- toggleMenu() -->
+        <button
+          class="hamburger-btn"
+          type="button"
+          onclick="toggleMenu()"
+          aria-label="Открыть меню"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+      <div class="main-nav-links" id="primary-navigation">
+        <!-- FAQ -->
+        <a href="/#faq" class="main-nav-link otk-faq-link">
+          <span class="main-nav-link-icon"
+            ><img
+              src="/icons/circle-question-mark.svg"
+              alt=""
+              class="icon headicon"
+          /></span>
+          <span>О сервисе</span>
+        </a>
+        <!-- FAQ END -->
+        <a href="/" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/menu.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Меню</span>
+        </a>
+        <a href="/cart.html" class="main-nav-link" id="cart-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/shopping-cart.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Корзина</span>
+        </a>
+        <a href="/orders.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/list-ordered.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Мои заказы</span>
+        </a>
+        <a href="/stats.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/chart-bar-big.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Статистика</span>
+        </a>
+        <a href="/profile.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/user-round-star.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Профиль</span>
+        </a>
+      </div>
+
+      <!-- Сохраняем слот -->
+      <div id="user-auth-slot" class="main-nav-auth auth-slot-hidden">
+        <a href="/login.html" class="main-nav-login">Войти</a>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <div class="hero-content-left">
+        <span class="hero-title" id="heroTitle"></span>
+      </div>
+
+      <div class="hero-content-right">
+        <section
+          id="live-settings-banner"
+          class="settings-banner hero-stats"
+          aria-label="Параметры заказа"
+        >
+          <!-- Заголовок панели -->
+          <div class="hero-stats__header">
+            <div class="hero-stats__heading">
+              <!-- <span class="hero-stats__dot"></span> -->
+
+              <div>
+                <h3>Параметры заказа</h3>
+                <p>Всё важное перед оформлением</p>
+              </div>
+            </div>
+
+            <span class="hero-stats__brand">OTKUSHU</span>
+          </div>
+
+          <!-- Информационные карточки -->
+          <div class="hero-stats__grid">
+            <!-- Цель организации -->
+            <a href="/stats.html" class="hero-stats__item">
+              <span class="hero-stats__icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <circle cx="12" cy="12" r="5" />
+                  <circle cx="12" cy="12" r="1" />
+                </svg>
+              </span>
+
+              <span class="banner-title">Цель организации</span>
+              <strong id="banner-goal" class="banner-value">— ₽</strong>
+            </a>
+
+            <!-- Дедлайн заказа -->
+            <a href="#order-info" class="hero-stats__item">
+              <span class="hero-stats__icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 7v5l3 2" />
+                </svg>
+              </span>
+
+              <span class="banner-title">Приём заказов до</span>
+              <strong id="banner-deadline" class="banner-value">—:00</strong>
+            </a>
+
+            <!-- Купон -->
+            <a
+              href="/profile.html"
+              class="hero-stats__item hero-stats__item--discount"
+            >
+              <span class="hero-stats__icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M3 5h18v5a2 2 0 0 0 0 4v5H3v-5a2 2 0 0 0 0-4V5Z" />
+                  <path d="m9 15 6-6" />
+                  <circle cx="9" cy="9" r="1" />
+                  <circle cx="15" cy="15" r="1" />
+                </svg>
+              </span>
+
+              <span class="banner-title">Скидка по купону</span>
+              <strong id="banner-discount" class="banner-value">—%</strong>
+            </a>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- <h1>Меню на сегодня:</h1> -->
+
+      <!-- Динамический баннер о времени приема заказов (скрипт управляет им) -->
+
+      <!-- Динамический информационный баннер -->
+      <div
+        id="delivery-banner"
+        class="delivery-info-banner"
+        data-state="loading"
+        role="status"
+        aria-live="polite"
+      >
+        <div class="delivery-banner__main">
+          <!-- Иконка -->
+          <div class="delivery-banner__icon" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 7v5l3 2" />
+            </svg>
+          </div>
+
+          <!-- Статус -->
+          <div class="delivery-banner__content">
+            <div class="delivery-banner__status">
+              <span class="delivery-banner__dot"></span>
+              <span id="delivery-banner-status"> ПРОВЕРЯЕМ ВРЕМЯ </span>
+            </div>
+
+            <h3 id="delivery-banner-title">Загружаем информацию...</h3>
+
+            <p id="delivery-banner-description">
+              Получаем актуальные параметры заказа.
+            </p>
+          </div>
+
+          <!-- Дата заказа -->
+          <div class="delivery-banner__date">
+            <span>Ожидаемая доставка</span>
+            <strong id="delivery-banner-date">—</strong>
+          </div>
+        </div>
+
+        <!-- Цель организации -->
+        <div class="delivery-banner__footer">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="9" />
+            <circle cx="12" cy="12" r="5" />
+            <circle cx="12" cy="12" r="1" />
+          </svg>
+
+          <span id="delivery-banner-goal"> Загружаем цель организации... </span>
+        </div>
+      </div>
+
+      <!-- Контейнер со списком услуг -->
+      <div id="menu-container" class="menu-grid">
+        <p style="text-align: center; color: var(--text-muted)">
+          Загружаем меню...
+        </p>
+      </div>
+    </div>
+
+    <!-- Подвал сайта: строго по требованиям ЮKassa -->
+    <!-- Подвал сайта: строго по требованиям ЮKassa -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>О сервисе «otkushu»</h4>
+          <p>
+            <b>Услуга</b> по организации и доставки индивидуального питания в
+            г.Якутск
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Правовая информация</h4>
+          <a href="/offer.html">Пользовательское соглашение (Оферта)</a>
+          <a href="/delivery-terms.html">Правила доставки и возврата</a>
+        </div>
+        <div class="footer-section">
+          <h4>Контакты и реквизиты</h4>
+          <div class="footer-contact-item">
+            <img src="/icons/map-pin-house.svg" alt="" class="footicon" />
+            <span>г. Якутск, Республика Саха (Якутия)</span>
+          </div>
+          <div class="footer-contact-item">
+            <img src="/icons/phone-log.svg" alt="" class="footicon" />
+            <span>+7 (996) 120-77-94</span>
+          </div>
+          <div class="footer-contact-item">
+            <img src="/icons/mail.svg" alt="" class="footicon" />
+            <span>niigatameltd@yandex.ru</span>
+          </div>
+          <!-- <p style="margin-top: 12px; font-size: 12px">
+            Самозанятый Васильев П.Н.<br />
+            ИНН: 143527252504<br />
+            Плательщик НПД
+          </p> -->
+        </div>
+      </div>
+      <div class="footer-bottom">
+        otkushu &copy; 2026 - Все права защищены. Прием платежей защищен
+        протоколом HTTPS и ЮKassa.
+      </div>
+    </footer>
+
+    <!-- Приветственное окно otkushu -->
+    <dialog
+      id="otk-welcome"
+      class="otk-welcome"
+      aria-labelledby="otk-welcome-title"
+      aria-describedby="otk-welcome-description"
+    >
+      <div class="otk-welcome__content">
+        <button
+          type="button"
+          class="otk-welcome__close"
+          id="otk-welcome-close"
+          aria-label="Закрыть приветствие"
+        >
+          &times;
+        </button>
+
+        <h2 id="otk-welcome-title">Добро пожаловать в <span>otkushu</span>!</h2>
+
+        <p id="otk-welcome-description" class="otk-welcome__description">
+          Блюда из столовой с доставкой прямо на работу в Якутске. Вкусно,
+          просто и удобно.
+        </p>
+
+        <div class="otk-welcome__features">
+          <div class="otk-welcome__feature">
+            <div class="otk-welcome__feature-icon">
+              <img src="/icons/menu.svg" alt="" />
+            </div>
+            <div>
+              <strong>Выбирайте любимые блюда</strong>
+              <p>Актуальное меню и цены на сайте.</p>
+            </div>
+          </div>
+
+          <div class="otk-welcome__feature">
+            <div class="otk-welcome__feature-icon">
+              <img src="/icons/shopping-cart.svg" alt="" />
+            </div>
+            <div>
+              <strong>Заказывайте в любое время</strong>
+              <p>Приём заказов открыт круглосуточно.</p>
+            </div>
+          </div>
+
+          <div class="otk-welcome__feature">
+            <div class="otk-welcome__feature-icon">
+              <img src="/icons/motorbike.svg" alt="" />
+            </div>
+            <div>
+              <strong>Доставка к обеду</strong>
+              <p>
+                <b>До дедлайна</b> - сегодня, <b>после</b> - завтра.
+                Ориентировочно к 12:00.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- География обслуживания -->
+        <div class="otk-welcome__organization">
+          <div class="otk-welcome__organization-icon">
+            <img src="/icons/building-complex.svg" alt="" />
+          </div>
+
+          <div class="otk-welcome__organization-content">
+            <span class="otk-welcome__organization-label">
+              ГДЕ МЫ РАБОТАЕМ
+            </span>
+
+            <strong>ГБУ РС(Я) «ССМП»</strong>
+
+            <p>Пока сервис доступен только сотрудникам этой организации.</p>
+          </div>
+        </div>
+
+        <button type="button" id="otk-welcome-start" class="otk-welcome__start">
+          Понятно, к меню!
+          <span aria-hidden="true">→</span>
+        </button>
+
+        <p class="otk-welcome__note">
+          Актуальная информация о доставке указана на главной странице.
+        </p>
+      </div>
+    </dialog>
+
+    <script src="scripts/hero.js"></script>
+    <script src="scripts/preload.js"></script>
+    <script src="/scripts/toast.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="/scripts/navigation-helper.js"></script>
+    <script src="/scripts/welcome.js"></script>
+  </body>
+</html>

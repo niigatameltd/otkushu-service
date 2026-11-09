@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Возврат после оплаты — otkushu</title>
+
+    <link rel="icon" type="image/svg+xml" href="/icons/fav/favicon.svg" />
+
+    <link rel="stylesheet" href="/styles/main.css" />
+
+    <style>
+      .payment-return-container {
+        max-width: 480px;
+        margin: 80px auto;
+        padding: 0 16px;
+      }
+
+      .payment-return-card {
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 35px 25px;
+        text-align: center;
+      }
+
+      .payment-return-logo {
+        display: inline-block;
+        font-size: 30px;
+        font-weight: 800;
+        color: var(--primary);
+        text-decoration: none;
+        margin-bottom: 25px;
+      }
+
+      .payment-return-icon {
+        width: 70px;
+        height: 70px;
+        background: #f0fdf4;
+        color: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 36px;
+        font-weight: 700;
+        margin: 0 auto 20px;
+      }
+
+      .payment-return-card h1 {
+        font-size: 23px;
+        margin-bottom: 14px;
+      }
+
+      .payment-return-description {
+        color: var(--text-muted);
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 22px;
+      }
+
+      .payment-return-note {
+        background: #f8fafc;
+        border-radius: 12px;
+        padding: 14px;
+        font-size: 13px;
+        color: var(--text-muted);
+        line-height: 1.6;
+        margin-bottom: 25px;
+      }
+
+      .payment-return-button {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 14px 20px;
+        background: var(--primary);
+        color: white;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 15px;
+        transition: opacity 0.2s;
+      }
+
+      .payment-return-button:hover {
+        opacity: 0.9;
+      }
+
+      .payment-return-back {
+        display: inline-block;
+        margin-top: 20px;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .payment-return-back:hover {
+        color: var(--primary);
+      }
+
+      @media (max-width: 600px) {
+        .payment-return-container {
+          margin: 35px auto;
+        }
+
+        .payment-return-card {
+          padding: 28px 18px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="payment-return-container">
+      <div class="payment-return-card">
+        <a href="/" class="payment-return-logo"> otkushu </a>
+
+        <div class="payment-return-icon">✓</div>
+
+        <h1>Спасибо за ваш заказ!</h1>
+
+        <p class="payment-return-description">
+          Вы вернулись из сервиса оплаты ЮKassa. Статус оплаты и подробную
+          информацию о заказе можно посмотреть в разделе «Мои заказы».
+        </p>
+
+        <div class="payment-return-note">
+          Если оплата ещё обрабатывается, статус заказа обновится после
+          подтверждения платежа.
+        </div>
+
+        <a href="/orders.html" class="payment-return-button"> Мои заказы </a>
+
+        <a href="/" class="payment-return-back"> Вернуться в меню </a>
+      </div>
+    </main>
+  </body>
+</html>

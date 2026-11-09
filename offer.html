@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>otkushu - Услуги доставки обедов в Якутске</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="/icons/fav/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/icons/fav/favicon.svg" />
+    <link rel="shortcut icon" href="/icons/fav/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/icons/fav/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/icons/fav/site.webmanifest" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/navigation.css" />
+
+    <style>
+      /* Стили страницы публичной оферты */
+      .legal-content {
+        max-width: 800px;
+        line-height: 1.7;
+        font-size: 0.8rem;
+        font-weight: 400;
+      }
+
+      .legal-content h1,
+      .legal-content h2,
+      .legal-content h3,
+      .legal-content p {
+        font-size: 0.8rem;
+        font-weight: 400;
+      }
+
+      .legal-content strong,
+      .legal-content b {
+        font-weight: 400;
+      }
+
+      .site-footer {
+        font-size: 0.8rem;
+        font-weight: 400;
+      }
+
+      .site-footer h4,
+      .site-footer p,
+      .site-footer a,
+      .site-footer span,
+      .footer-bottom {
+        font-size: 0.8rem;
+        font-weight: 400;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Навигационная шапка -->
+    <nav class="main-nav" id="mainNav" aria-label="Основная навигация">
+      <div class="nav-header-top">
+        <a href="/" class="main-nav-logo" aria-label="otkushu - на главную">
+          <span class="main-nav-logo-text">
+            <strong>otkushu</strong>
+            <small>организация питания</small>
+          </span>
+        </a>
+
+        <!-- toggleMenu() -->
+        <button
+          class="hamburger-btn"
+          type="button"
+          onclick="toggleMenu()"
+          aria-label="Открыть меню"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+      <div class="main-nav-links" id="primary-navigation">
+        <!-- FAQ -->
+        <a href="/#faq" class="main-nav-link otk-faq-link">
+          <span class="main-nav-link-icon"
+            ><img
+              src="/icons/circle-question-mark.svg"
+              alt=""
+              class="icon headicon"
+          /></span>
+          <span>О сервисе</span>
+        </a>
+        <!-- FAQ END -->
+        <a href="/" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/menu.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Меню</span>
+        </a>
+        <a href="/cart.html" class="main-nav-link" id="cart-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/shopping-cart.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Корзина</span>
+        </a>
+        <a href="/orders.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/list-ordered.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Мои заказы</span>
+        </a>
+        <a href="/stats.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/chart-bar-big.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Статистика</span>
+        </a>
+        <a href="/profile.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/user-round-star.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Профиль</span>
+        </a>
+      </div>
+
+      <!-- Сохраняем слот -->
+      <div id="user-auth-slot" class="main-nav-auth auth-slot-hidden">
+        <a href="/login.html" class="main-nav-login">Войти</a>
+      </div>
+    </nav>
+
+    <div class="container legal-content">
+      <h1 style="text-align: left; margin-bottom: 20px">
+        Публичная оферта (пользовательское соглашение)
+      </h1>
+      <p
+        style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 30px"
+      >
+        Дата публикации: 29 октября 2026 г.
+      </p>
+
+      <h2>1. Общие положения</h2>
+      <p>
+        1.1. Настоящий документ является официальным предложением (публичной
+        офертой) Самозанятого гражданина Васильева Павла Николаевича (ИНН
+        143527252504, плательщик налога на профессиональный доход — НПД),
+        именуемого в дальнейшем «Исполнитель», адресованным неопределенному
+        кругу лиц, заключить договор на оказание услуг по заказу и организации
+        доставки готовых горячих обедов через сервис otkushu (далее — Сервис).
+      </p>
+      <p>
+        1.2. В соответствии со ст. 437 Гражданского кодекса РФ (ГК РФ), данное
+        предложение является публичной офертой. Акцептом (принятием) условий
+        оферты считается оформление Заказа на сайте otkushu.ru и внесение
+        предоплаты.
+      </p>
+
+      <h2>2. Предмет соглашения</h2>
+      <p>
+        2.1. Исполнитель обязуется принять от Заказчика заказ на готовые блюда
+        из партнерских предприятий общественного питания (в частности, «Столовая
+        ДП №2», г. Якутск, ул. Ленина, 30), организовать их приготовление,
+        комплектацию и доставку в адрес организации-получателя в г. Якутске, а
+        Заказчик обязуется оплатить услуги.
+      </p>
+
+      <h2>3. Порядок оформления заказа и сроки</h2>
+      <p>
+        3.1. Оформление заказов на сайте доступно ежедневно до 11:00 часов по
+        местному времени (Якутск). Заказы, поданные после указанного времени,
+        оформляются на следующий рабочий день.
+      </p>
+      <p>
+        3.2. Доставка коллективного заказа осуществляется централизованно по
+        адресу нахождения организации-клиента.
+      </p>
+
+      <h2>4. Стоимость услуг и порядок расчетов</h2>
+      <p>
+        4.1. Цены на блюда и тарифы указываются на сайте otkushu.ru в рублях
+        Российской Федерации.
+      </p>
+      <p>
+        4.2. Оплата заказов осуществляется безналичным путем с использованием
+        банковских карт через платежный шлюз ЮKassa.
+      </p>
+      <p>
+        4.3. После совершения оплаты Исполнитель формирует и направляет
+        Заказчику чек в соответствии с Федеральным законом № 54-ФЗ.
+      </p>
+
+      <h2>5. Ответственность и реквизиты</h2>
+      <p>5.1. Все споры и разногласия решаются путем переговоров.</p>
+      Исполнитель:<br />
+      Самозанятый Васильев Павел Николаевич<br />
+      ИНН: 143527252504<br />
+      Город: Якутск, Республика Саха (Якутия)<br />
+      Телефон: +7 (996) 120-77-94<br />
+      Email: niigatameltd@yandex.ru
+      <!-- <p
+        style="
+          margin-top: 30px;
+          background: var(--surface-color);
+          padding: 20px;
+          border-radius: var(--radius);
+          border: 1px solid var(--border-color);
+        "
+      >
+        Исполнитель:<br />
+        Самозанятый Васильев Павел Николаевич<br />
+        ИНН: 143527252504<br />
+        Город: Якутск, Республика Саха (Якутия)<br />
+        Телефон: +7 (996) 120-77-94<br />
+        Email: niigatameltd@yandex.ru
+      </p> -->
+    </div>
+
+    <!-- Подвал -->
+    <!-- Подвал сайта: строго по требованиям ЮKassa -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>О сервисе «otkushu»</h4>
+          <p>
+            Услуга по организации и доставки индивидуального питания в г.Якутск
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Правовая информация</h4>
+          <a href="/offer.html">Пользовательское соглашение (Оферта)</a>
+          <a href="/delivery-terms.html">Правила доставки и возврата</a>
+        </div>
+        <div class="footer-section">
+          <h4>Контакты и реквизиты</h4>
+          <div class="footer-contact-item">
+            <img src="/icons/map-pin-house.svg" alt="" class="footicon" />
+            <span>г. Якутск, Республика Саха (Якутия)</span>
+          </div>
+          <div class="footer-contact-item">
+            <img src="/icons/phone-log.svg" alt="" class="footicon" />
+            <span>+7 (996) 120-77-94</span>
+          </div>
+          <div class="footer-contact-item">
+            <img src="/icons/mail.svg" alt="" class="footicon" />
+            <span>niigatameltd@yandex.ru</span>
+          </div>
+          <!-- <p style="margin-top: 12px; font-size: 12px">
+            Самозанятый Васильев П.Н.<br />
+            ИНН: 143527252504<br />
+            Плательщик НПД
+          </p> -->
+        </div>
+      </div>
+      <div class="footer-bottom">
+        otkushu &copy; 2026 - Все права защищены. Прием платежей защищен
+        протоколом HTTPS и ЮKassa.
+      </div>
+    </footer>
+    <script src="scripts/preload.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/navigation-helper.js"></script>
+  </body>
+</html>

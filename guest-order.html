@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Мой гостевой заказ — otkushu</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="/icons/fav/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/icons/fav/favicon.svg" />
+    <link rel="shortcut icon" href="/icons/fav/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/icons/fav/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/icons/fav/site.webmanifest" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/navigation.css" />
+    <style>
+      [hidden] {
+        display: none !important;
+      }
+      .guest-order-page {
+        max-width: 780px;
+        margin: 30px auto 60px;
+      }
+      .guest-order-panel {
+        background: #fff;
+        padding: 24px;
+        border-radius: 18px;
+        border: 1px solid #e2e8f0;
+        margin-bottom: 18px;
+      }
+      .guest-order-muted {
+        color: #64748b;
+        font-size: 14px;
+        line-height: 1.65;
+      }
+      .guest-order-meta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .guest-order-meta div {
+        background: #f8fafc;
+        border-radius: 10px;
+        padding: 12px;
+      }
+      .guest-order-meta span {
+        color: #64748b;
+        display: block;
+        font-size: 12px;
+        margin-bottom: 4px;
+      }
+      .guest-order-meta strong {
+        overflow-wrap: anywhere;
+      }
+      .guest-order-button {
+        cursor: pointer;
+        border: 0;
+        border-radius: 11px;
+        padding: 14px 18px;
+        font: inherit;
+        font-weight: 700;
+        background: #16a34a;
+        color: white;
+      }
+      .guest-order-button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .guest-order-button.secondary {
+        color: #334155;
+        background: #e2e8f0;
+      }
+      .guest-order-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .guest-order-item {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 10px 0;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      .guest-order-item:last-child {
+        border-bottom: 0;
+      }
+      .guest-order-page > .guest-order-muted {
+        text-align: center;
+      }
+      #guest-error {
+        color: #b91c1c;
+        white-space: pre-wrap;
+      }
+      #guest-message {
+        white-space: pre-wrap;
+      }
+      @media (max-width: 600px) {
+        .guest-order-panel {
+          padding: 16px;
+        }
+        .guest-order-meta {
+          grid-template-columns: 1fr;
+        }
+        .guest-order-button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Навигационная шапка -->
+    <nav class="main-nav" id="mainNav" aria-label="Основная навигация">
+      <div class="nav-header-top">
+        <a href="/" class="main-nav-logo" aria-label="otkushu - на главную">
+          <span class="main-nav-logo-text">
+            <strong>otkushu</strong>
+            <small>организация питания</small>
+          </span>
+        </a>
+
+        <!-- toggleMenu() -->
+        <button
+          class="hamburger-btn"
+          type="button"
+          onclick="toggleMenu()"
+          aria-label="Открыть меню"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+      <div class="main-nav-links" id="primary-navigation">
+        <!-- FAQ -->
+        <a href="/#faq" class="main-nav-link otk-faq-link">
+          <span class="main-nav-link-icon"
+            ><img
+              src="/icons/circle-question-mark.svg"
+              alt=""
+              class="icon headicon"
+          /></span>
+          <span>О сервисе</span>
+        </a>
+        <!-- FAQ END -->
+        <a href="/" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/menu.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Меню</span>
+        </a>
+        <a href="/cart.html" class="main-nav-link" id="cart-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/shopping-cart.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Корзина</span>
+        </a>
+        <a href="/orders.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/list-ordered.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Мои заказы</span>
+        </a>
+        <a href="/stats.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/chart-bar-big.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Статистика</span>
+        </a>
+        <a href="/profile.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/user-round-star.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Профиль</span>
+        </a>
+      </div>
+
+      <!-- Сохраняем слот -->
+      <div id="user-auth-slot" class="main-nav-auth auth-slot-hidden">
+        <a href="/login.html" class="main-nav-login">Войти</a>
+      </div>
+    </nav>
+    <main class="container guest-order-page">
+      <h1>Гостевой заказ</h1>
+      <p class="guest-order-muted">
+        Для просмотра и продолжения оплаты регистрация не нужна.
+      </p>
+      <section class="guest-order-panel" id="guest-order-loading">
+        <p>Загружаем данные заказа...</p>
+      </section>
+      <section class="guest-order-panel" id="guest-order-details" hidden>
+        <h2 id="guest-order-title">Заказ</h2>
+        <div class="guest-order-meta">
+          <div>
+            <span>Статус</span><strong id="guest-order-status">—</strong>
+          </div>
+          <div>
+            <span>Дата доставки</span><strong id="guest-order-date">—</strong>
+          </div>
+          <div><span>Имя</span><strong id="guest-order-name">—</strong></div>
+          <div>
+            <span>Организация</span
+            ><strong id="guest-order-organization">—</strong>
+          </div>
+        </div>
+        <h3>Состав заказа</h3>
+        <div id="guest-order-items"></div>
+        <p><strong>Доставка:</strong> <span id="guest-order-fee"></span></p>
+        <p>
+          <strong>К оплате:</strong> <strong id="guest-order-total"></strong>
+        </p>
+        <p id="guest-order-comment" class="guest-order-muted" hidden></p>
+        <p id="guest-message" aria-live="polite" class="guest-order-muted"></p>
+        <div class="guest-order-actions">
+          <button
+            id="guest-pay-button"
+            class="guest-order-button"
+            type="button"
+            hidden
+          >
+            Перейти к оплате
+          </button>
+          <button
+            id="guest-refresh-button"
+            class="guest-order-button secondary"
+            type="button"
+          >
+            Обновить статус
+          </button>
+        </div>
+      </section>
+      <section class="guest-order-panel" id="guest-order-link-panel" hidden>
+        <h3>🔐 Сохрани ссылку на заказ</h3>
+        <p class="guest-order-muted">
+          Только по этой секретной ссылке можно посмотреть заказ и продолжить
+          оплату. Любой человек со ссылкой сможет получить доступ к сведениям
+          заказа: никому её не пересылай.
+        </p>
+        <button
+          id="guest-copy-button"
+          class="guest-order-button secondary"
+          type="button"
+        >
+          Скопировать ссылку
+        </button>
+        <p
+          id="guest-copy-message"
+          class="guest-order-muted"
+          aria-live="polite"
+        ></p>
+      </section>
+      <section class="guest-order-panel" id="guest-order-error-panel" hidden>
+        <p id="guest-error" role="alert"></p>
+        <a href="/cart.html">Вернуться в корзину</a>
+      </section>
+    </main>
+    <!-- Подвал сайта: строго по требованиям ЮKassa -->
+    <!-- Подвал сайта: строго по требованиям ЮKassa -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>О сервисе «otkushu»</h4>
+          <p>
+            <b>Услуга</b> по организации и доставки индивидуального питания в
+            г.Якутск
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Правовая информация</h4>
+          <a href="/offer.html">Пользовательское соглашение (Оферта)</a>
+          <a href="/delivery-terms.html">Правила доставки и возврата</a>
+        </div>
+        <div class="footer-section">
+          <h4>Контакты и реквизиты</h4>
+          <div class="footer-contact-item">
+            <img src="/icons/map-pin-house.svg" alt="" class="footicon" />
+            <span>г. Якутск, Республика Саха (Якутия)</span>
+          </div>
+          <div class="footer-contact-item">
+            <img src="/icons/phone-log.svg" alt="" class="footicon" />
+            <span>+7 (996) 120-77-94</span>
+          </div>
+          <div class="footer-contact-item">
+            <img src="/icons/mail.svg" alt="" class="footicon" />
+            <span>niigatameltd@yandex.ru</span>
+          </div>
+          <!-- <p style="margin-top: 12px; font-size: 12px">
+            Самозанятый Васильев П.Н.<br />
+            ИНН: 143527252504<br />
+            Плательщик НПД
+          </p> -->
+        </div>
+      </div>
+      <div class="footer-bottom">
+        otkushu &copy; 2026 - Все права защищены. Прием платежей защищен
+        протоколом HTTPS и ЮKassa.
+      </div>
+    </footer>
+    <script src="/scripts/preload.js"></script>
+    <script src="/scripts/guest-order.js"></script>
+    <script src="/scripts/navigation-helper.js"></script>
+  </body>
+</html>

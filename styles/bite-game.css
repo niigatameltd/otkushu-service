@@ -1,0 +1,40 @@
+/* Карточка ежедневной игры «Откусить!» */
+.bite-game {
+  background: linear-gradient(140deg, #fff8ed 0%, #fff 58%, #effbef 100%);
+  border: 1px solid #f0dfc5;
+  border-radius: 20px;
+  padding: 26px 22px;
+  margin: 22px 0;
+  text-align: center;
+  box-shadow: 0 6px 24px rgba(42, 65, 35, .06);
+}
+.bite-game h2 { margin: 0 0 8px; font-size: 25px; color: #233b2a; }
+.bite-game-lead { margin: 0 0 22px; font-size: 14px; line-height: 1.5; color: #526355; }
+.bite-reel {
+  width: 118px; height: 118px; margin: 0 auto 18px;
+  display: grid; place-items: center;
+  font-size: 60px; background: #fff; border-radius: 50%;
+  border: 5px solid #ffd792;
+  box-shadow: 0 8px 28px rgba(154, 101, 20, .12);
+  transition: transform .25s, border-color .25s;
+}
+.bite-reel-spinning { animation: bite-pulse .48s ease-in-out infinite alternate; }
+.bite-reel-win { border-color: #16a34a; animation: bite-win .65s ease-in-out both; }
+.bite-game-button {
+  font: inherit; font-size: 17px; font-weight: 800;
+  border: 0; border-radius: 12px; padding: 14px 32px;
+  min-width: 225px; background: #259c46; color: white;
+  cursor: pointer; box-shadow: 0 5px 16px rgba(37,156,70,.20);
+}
+.bite-game-button:hover:not(:disabled) { background: #1e8239; }
+.bite-game-button:disabled { opacity: .6; cursor: not-allowed; box-shadow: none; }
+.bite-result { font-weight: 700; font-size: 16px; margin: 18px 0 5px; min-height: 25px; color: #233b2a; }
+.bite-caption { color: #65716a; font-size: 13px; line-height: 1.55; margin: 0; }
+@keyframes bite-pulse { to { transform: rotate(10deg) scale(1.09); border-color: #f8a638; } }
+@keyframes bite-win { 50% { transform: scale(1.2) rotate(-12deg); } }
+@media (max-width: 500px) {
+  .bite-game { padding: 20px 13px; }
+  .bite-reel { width: 98px; height: 98px; font-size: 52px; }
+  .bite-game-button { width: 100%; max-width: 290px; }
+}
+@media (prefers-reduced-motion: reduce) { .bite-reel-spinning, .bite-reel-win { animation: none; } }

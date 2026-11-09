@@ -1,0 +1,1746 @@
+/* Variable fonts usage:
+:root { font-family: "Inter", sans-serif; }
+@supports (font-variation-settings: normal) {
+  :root { font-family: "InterVariable", sans-serif; font-optical-sizing: auto; }
+} */
+@font-face {
+  font-family: InterVariable;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/InterVariable.woff2") format("woff2");
+}
+@font-face {
+  font-family: InterVariable;
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/InterVariable-Italic.woff2") format("woff2");
+}
+
+/* static fonts */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url("../fonts/Inter-Thin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 100;
+  font-display: swap;
+  src: url("../fonts/Inter-ThinItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url("../fonts/Inter-ExtraLight.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 200;
+  font-display: swap;
+  src: url("../fonts/Inter-ExtraLightItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../fonts/Inter-Light.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../fonts/Inter-LightItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/Inter-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/Inter-Italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/Inter-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/Inter-MediumItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/Inter-SemiBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/Inter-SemiBoldItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/Inter-Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/Inter-BoldItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("../fonts/Inter-ExtraBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 800;
+  font-display: swap;
+  src: url("../fonts/Inter-ExtraBoldItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("../fonts/Inter-Black.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 900;
+  font-display: swap;
+  src: url("../fonts/Inter-BlackItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterDisplay";
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url("../fonts/InterDisplay-Thin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterDisplay";
+  font-style: italic;
+  font-weight: 100;
+  font-display: swap;
+  src: url("../fonts/InterDisplay-ThinItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterDisplay";
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url("../fonts/InterDisplay-ExtraLight.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterDisplay";
+  font-style: italic;
+  font-weight: 200;
+  font-display: swap;
+  src: url("../fonts/InterDisplay-ExtraLightItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterDisplay";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../fonts/InterDisplay-Light.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterDisplay";
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../fonts/InterDisplay-LightItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterDisplay";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/InterDisplay-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterDisplay";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/InterDisplay-Italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterDisplay";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/InterDisplay-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterDisplay";
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/InterDisplay-MediumItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterDisplay";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/InterDisplay-SemiBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterDisplay";
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/InterDisplay-SemiBoldItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterDisplay";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/InterDisplay-Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterDisplay";
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/InterDisplay-BoldItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterDisplay";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("../fonts/InterDisplay-ExtraBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterDisplay";
+  font-style: italic;
+  font-weight: 800;
+  font-display: swap;
+  src: url("../fonts/InterDisplay-ExtraBoldItalic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterDisplay";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("../fonts/InterDisplay-Black.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterDisplay";
+  font-style: italic;
+  font-weight: 900;
+  font-display: swap;
+  src: url("../fonts/InterDisplay-BlackItalic.woff2") format("woff2");
+}
+
+@font-feature-values InterVariable {
+  @character-variant {
+    cv01: 1;
+    cv02: 2;
+    cv03: 3;
+    cv04: 4;
+    cv05: 5;
+    cv06: 6;
+    cv07: 7;
+    cv08: 8;
+    cv09: 9;
+    cv10: 10;
+    cv11: 11;
+    cv12: 12;
+    cv13: 13;
+    alt-1: 1;
+    alt-3: 9;
+    open-4: 2;
+    open-6: 3;
+    open-9: 4;
+    lc-l-with-tail: 5;
+    simplified-u: 6;
+    alt-double-s: 7;
+    uc-i-with-serif: 8;
+    uc-g-with-spur: 10;
+    single-story-a: 11;
+    compact-lc-f: 12;
+    compact-lc-t: 13;
+  }
+  @styleset {
+    ss01: 1;
+    ss02: 2;
+    ss03: 3;
+    ss04: 4;
+    ss05: 5;
+    ss06: 6;
+    ss07: 7;
+    ss08: 8;
+    open-digits: 1;
+    disambiguation: 2;
+    disambiguation-except-zero: 4;
+    round-quotes-and-commas: 3;
+    square-punctuation: 7;
+    square-quotes: 8;
+    circled-characters: 5;
+    squared-characters: 6;
+  }
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --bg-color: #ffffff;
+  --surface-color: #f8fafc;
+  --primary: #1d6746;
+  --primary-hover: #f6faf7;
+  --text-primary: #ffffff;
+  --primary-light: #faca4b;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --radius: 13px;
+  --blue-color: #2563eb;
+  --red-color: #dc2626;
+}
+
+body {
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+/* Иконки */
+.icon {
+  width: 18px;
+  height: 18px;
+}
+.headicon {
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.auth-slot-hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* HERO SECTION */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 30px;
+  background-color: var(--surface-color);
+  border-bottom: 1px solid var(--border-color);
+  gap: 30px;
+  cursor: crosshair;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.hero-title {
+  font-weight: 800;
+  font-size: 2.5rem;
+  opacity: 1;
+  transform: translateY(0);
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.hero-is-changing {
+  opacity: 0;
+  transform: translateY(-15px);
+}
+
+.hero-title-highlight {
+  color: var(--primary);
+}
+
+.hero-content-left {
+  flex: 1;
+  padding: 0;
+}
+
+/* информационный баннер */
+a.hero-stats__item {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+a.hero-stats__item:focus-visible {
+  outline: 2px solid var(--primary, #16a34a);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  a.hero-stats__item:hover {
+    border-color: var(--primary, #16a34a);
+    box-shadow: 0 8px 24px rgba(22, 163, 74, 0.12);
+    transform: translateY(-3px);
+  }
+}
+/* Правая часть Hero */
+.hero-content-right {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Общая панель */
+.hero-content-right #live-settings-banner {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  min-width: 0;
+  margin: 0;
+  padding: 20px;
+
+  background: linear-gradient(145deg, #fff, #f7fbf8);
+  border: 1px solid #e2ece5;
+  border-radius: 22px;
+
+  box-shadow:
+    0 12px 35px rgba(15, 60, 35, 0.06),
+    0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+/* Маленький зелёный акцент сверху */
+.hero-stats::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 24px;
+  width: 70px;
+  height: 3px;
+  background: var(--primary, #16a34a);
+  border-radius: 0 0 8px 8px;
+}
+
+/* Шапка панели */
+.hero-stats__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.hero-stats__heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.hero-stats__dot {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--primary, #16a34a);
+  box-shadow: 0 0 0 5px rgba(22, 163, 74, 0.1);
+}
+
+.hero-stats__heading h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  color: #172b20;
+  line-height: 1.4;
+}
+
+.hero-stats__heading p {
+  margin: 3px 0 0;
+  font-size: 11px;
+  color: #839189;
+}
+
+.hero-stats__brand {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--primary, #16a34a);
+  background: #e8f7ed;
+  border-radius: 8px;
+  padding: 7px 9px;
+}
+
+/* Сетка из трёх карточек */
+.hero-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+/* Отдельная карточка */
+.hero-stats__item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  min-height: 145px;
+  padding: 14px 12px;
+
+  background: #fff;
+  border: 1px solid #e9eeea;
+  border-radius: 14px;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Эффект при наведении */
+@media (hover: hover) {
+  .hero-stats__item:hover {
+    transform: translateY(-3px);
+    border-color: #b4dfc1;
+    box-shadow: 0 8px 20px rgba(22, 163, 74, 0.07);
+  }
+}
+
+/* Иконка */
+.hero-stats__icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--primary, #16a34a);
+  background: #eaf8ee;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.hero-stats__icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+/* Названия параметров */
+.hero-stats .banner-title {
+  display: block;
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #7b8b81;
+}
+
+/* Числовые значения */
+.hero-stats .banner-value {
+  display: block;
+  margin-top: auto;
+  font-size: clamp(18px, 2vw, 23px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
+  color: #152a1d;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+/* Акцент на скидке */
+.hero-stats__item--discount .banner-value {
+  color: var(--primary, #16a34a);
+}
+
+/* Адаптация под планшеты */
+@media (max-width: 768px) {
+  .hero-content-right {
+    flex: 1 1 100%;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-content-right #live-settings-banner {
+    max-width: 100%;
+  }
+}
+
+/* Адаптация под телефоны */
+@media (max-width: 520px) {
+  .hero-content-right #live-settings-banner {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .hero-stats__header {
+    margin-bottom: 15px;
+  }
+
+  .hero-stats__grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .hero-stats__item {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 12px;
+
+    min-height: 0;
+    padding: 12px 14px;
+    border-radius: 12px;
+  }
+
+  .hero-stats__icon {
+    grid-column: 1;
+    margin: 0;
+  }
+
+  .hero-stats .banner-title {
+    grid-column: 2;
+    margin: 0;
+    font-size: 12px;
+  }
+
+  .hero-stats .banner-value {
+    grid-column: 3;
+    margin: 0;
+    font-size: 19px;
+    text-align: right;
+  }
+}
+
+/* Очень узкие экраны */
+@media (max-width: 350px) {
+  .hero-stats__brand {
+    display: none;
+  }
+
+  .hero-stats .banner-value {
+    font-size: 17px;
+  }
+}
+
+/* Для пользователей с уменьшенной анимацией */
+@media (prefers-reduced-motion: reduce) {
+  .hero-stats__item {
+    transition: none;
+  }
+}
+
+/* --- Баннеры настроек и дедлайнов --- */
+.settings-banner {
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+  border: 1px solid #fed7aa;
+  padding: 15px 20px;
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.banner-title {
+  font-size: 1rem;
+  color: var(--text-main);
+  display: block;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+/* Основной баннер */
+.delivery-info-banner {
+  user-select: none;
+
+  --banner-accent: #16a34a;
+  --banner-soft: #eaf8ee;
+
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 20px 24px;
+  margin-bottom: 25px;
+
+  background: linear-gradient(135deg, #ffffff, #f7fbf8);
+  border: 1px solid #dfebe3;
+  border-radius: 18px;
+
+  box-shadow: 0 8px 28px rgba(15, 50, 28, 0.045);
+
+  color: var(--text-main, #172b20);
+  text-align: left;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Цветная полоска слева */
+.delivery-info-banner::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--banner-accent);
+}
+
+/* Состояние: закрыто */
+.delivery-info-banner[data-state="closed"] {
+  --banner-accent: #d97706;
+  --banner-soft: #fff3df;
+
+  background: linear-gradient(135deg, #ffffff, #fffaf2);
+  border-color: #f1dfc5;
+}
+
+/* Состояние: загрузка */
+.delivery-info-banner[data-state="loading"] {
+  --banner-accent: #64748b;
+  --banner-soft: #f1f5f9;
+}
+
+/* Главная часть */
+.delivery-banner__main {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Иконка */
+.delivery-banner__icon {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--banner-soft);
+  color: var(--banner-accent);
+
+  border-radius: 14px;
+}
+
+.delivery-banner__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Текстовый блок */
+.delivery-banner__content {
+  min-width: 0;
+}
+
+/* Маленький статус */
+.delivery-banner__status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-bottom: 6px;
+
+  color: var(--banner-accent);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+}
+
+/* Индикатор */
+.delivery-banner__dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+
+  background: var(--banner-accent);
+  border-radius: 50%;
+}
+
+/* Заголовок */
+.delivery-banner__content h3 {
+  margin: 0 0 5px;
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--text-main, #172b20);
+}
+
+/* Описание */
+.delivery-banner__content p {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-muted, #64748b);
+}
+
+/* Блок даты */
+.delivery-banner__date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+
+  padding: 12px 16px;
+
+  background: var(--banner-soft);
+  border-radius: 12px;
+
+  white-space: nowrap;
+}
+
+.delivery-banner__date span {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--banner-accent);
+}
+
+.delivery-banner__date strong {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--banner-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Нижняя часть */
+.delivery-banner__footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 16px;
+  padding-top: 14px;
+
+  border-top: 1px solid var(--border-color, #e5e7eb);
+
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-main, #334155);
+}
+
+.delivery-banner__footer svg {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  color: var(--banner-accent);
+}
+
+/* Доставка сегодня */
+.delivery-info-banner[data-state="today"] {
+  --banner-accent: #16a34a;
+  --banner-soft: #eaf8ee;
+
+  background: linear-gradient(135deg, #ffffff, #f7fbf8);
+  border-color: #c7e9d3;
+}
+
+/* Доставка завтра */
+.delivery-info-banner[data-state="tomorrow"] {
+  --banner-accent: #2563eb;
+  --banner-soft: #eff6ff;
+
+  background: linear-gradient(135deg, #ffffff, #f5f9ff);
+  border-color: #bfdbfe;
+}
+
+/* Планшеты и телефоны */
+@media (max-width: 640px) {
+  .delivery-info-banner {
+    padding: 16px;
+    border-radius: 15px;
+  }
+
+  .delivery-banner__main {
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+  }
+
+  .delivery-banner__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+  }
+
+  .delivery-banner__icon svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .delivery-banner__content h3 {
+    font-size: 16px;
+  }
+
+  .delivery-banner__content p {
+    font-size: 12px;
+  }
+
+  /* Дата занимает всю ширину снизу */
+  .delivery-banner__date {
+    grid-column: 1 / -1;
+
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 11px 13px;
+    margin-top: 3px;
+  }
+
+  .delivery-banner__date strong {
+    font-size: 14px;
+  }
+
+  .delivery-banner__footer {
+    margin-top: 13px;
+    padding-top: 12px;
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .delivery-info-banner {
+    transition: none;
+  }
+}
+
+/* --- Контейнер и типографика --- */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+h1 {
+  text-align: center;
+  color: var(--text-main);
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+
+/* --- Стили для фильтров по категориям (табы) --- */
+.category-tabs {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+  white-space: nowrap;
+  scrollbar-width: thin;
+}
+
+.category-tab {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.category-tab:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.category-tab.active {
+  background: var(--primary);
+  color: var(--text-primary);
+  border-color: var(--primary);
+}
+
+/* --- Сетка каталога в стиле доставки еды --- */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.dish-card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.dish-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  border-color: #cbd5e1;
+}
+
+.dish-image-container {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+  background: #f1f5f9;
+}
+
+.dish-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.dish-card:hover .dish-image {
+  transform: scale(1.03);
+}
+
+.dish-quantity-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 4px 8px;
+  border-radius: var(--radius);
+  font-size: 11px;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+}
+.dish-quantity-badge-bottom {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 4px 8px;
+  border-radius: var(--radius);
+  font-size: 11px;
+  text-align: center;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+}
+
+.dish-info {
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.dish-info .category {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.dish-info h3 {
+  margin: 0 0 6px 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.dish-info p {
+  margin: 0 0 10px 0;
+  font-size: 1rem;
+  color: var(--text-muted);
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.dish-weight {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 15px;
+}
+
+.dish-footer {
+  padding: 0 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dish-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dish-price {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.dish-counter {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg-color);
+}
+
+.dish-counter button {
+  background: transparent;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--text-main);
+  transition: background 0.2s;
+}
+
+.dish-counter button:hover {
+  background: var(--surface-color);
+}
+
+.dish-counter span {
+  padding: 0 8px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* --- Подвал сайта --- */
+.site-footer {
+  border-top: 1px solid var(--border-color);
+  margin-top: 60px;
+  padding: 40px 20px;
+  background: var(--surface-color);
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.footer-content {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.footer-section h4 {
+  color: var(--text-main);
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.footer-section p,
+.footer-section a {
+  color: var(--text-muted);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.footer-section a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  padding-top: 20px;
+}
+
+/* --- Стили для иконок в футере --- */
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: var(--text-muted);
+}
+
+.footicon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+/* История заказов */
+
+.orders-message {
+  text-align: center;
+  color: #7f8c8d;
+  padding: 30px 12px;
+}
+
+.orders-error {
+  color: #dc2626;
+}
+
+.order-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 22px;
+  margin-bottom: 18px;
+}
+
+.order-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.order-card-header h2 {
+  font-size: 19px;
+  font-weight: 800;
+  margin: 0 0 6px;
+}
+
+.order-created {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.order-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.order-status-paid {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.order-status-pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.order-status-cancelled {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.order-status-unknown {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+.order-delivery {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.order-items {
+  margin-top: 16px;
+  padding: 14px 0;
+  border-top: 1px solid #f1f1f1;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 7px 0;
+  font-size: 14px;
+}
+
+.order-item strong {
+  white-space: nowrap;
+}
+
+.order-item-quantity {
+  color: #6b7280;
+}
+
+.order-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.order-coupon {
+  display: inline-block;
+  background: #fef3c7;
+  color: #92400e;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.order-total {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.order-total span {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.order-total strong {
+  font-size: 21px;
+  font-weight: 800;
+  color: #35a712;
+}
+
+.order-status-description {
+  margin: 16px 0 0;
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .order-card {
+    padding: 16px;
+  }
+
+  .order-card-header h2 {
+    font-size: 17px;
+  }
+
+  .order-item {
+    font-size: 13px;
+  }
+
+  .order-total strong {
+    font-size: 19px;
+  }
+}
+
+/* Продолжить оплату */
+
+.resume-payment-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 16px;
+  padding: 12px 20px;
+
+  background: var(--primary);
+  color: #fff;
+
+  border: none;
+  border-radius: 11px;
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.resume-payment-btn:hover {
+  opacity: 0.9;
+}
+
+.resume-payment-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Купоны в личном кабинете */
+
+.profile-heading {
+  margin-top: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+.profile-coupons {
+  margin-top: 25px;
+  padding: 20px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 16px;
+}
+
+.profile-coupons h3 {
+  margin: 0 0 18px;
+  text-align: center;
+  color: #166534;
+}
+
+.profile-coupon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.profile-coupon-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 1px solid #dcfce7;
+  padding: 14px 6px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.profile-coupon-stat span {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.profile-coupon-stat strong {
+  font-size: 28px;
+  font-weight: 800;
+  color: #15803d;
+}
+
+.profile-coupon-note {
+  font-size: 13px;
+  color: #4b5563;
+  margin: 14px 0 0;
+  line-height: 1.6;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .profile-coupons {
+    padding: 12px;
+  }
+
+  .profile-coupon-grid {
+    gap: 6px;
+  }
+
+  .profile-coupon-stat strong {
+    font-size: 23px;
+  }
+}
+
+.order-delivery-comment {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 16px;
+  font-size: 13px;
+}
+
+.order-delivery-comment strong {
+  color: var(--text-main);
+}
+
+.order-delivery-comment p {
+  color: var(--text-muted);
+  margin: 6px 0 0;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* ======================================
+   TOAST NOTIFICATIONS — OTKUSHU
+====================================== */
+
+.toast-container {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  width: min(390px, calc(100vw - 32px));
+
+  z-index: 99999;
+
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  padding: 15px 16px;
+
+  background: #ffffff;
+  color: #1e293b;
+
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #64748b;
+  border-radius: 14px;
+
+  box-shadow:
+    0 10px 25px rgba(15, 23, 42, 0.12),
+    0 3px 8px rgba(15, 23, 42, 0.05);
+
+  pointer-events: auto;
+
+  animation: toast-slide-in 0.25s ease-out;
+}
+
+.toast-success {
+  border-left-color: #16a34a;
+}
+
+.toast-error {
+  border-left-color: #dc2626;
+}
+
+.toast-warning {
+  border-left-color: #d97706;
+}
+
+.toast-info {
+  border-left-color: #2563eb;
+}
+
+.toast-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+
+  border-radius: 50%;
+
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.toast-success .toast-icon {
+  color: #15803d;
+  background: #dcfce7;
+}
+
+.toast-error .toast-icon {
+  color: #dc2626;
+  background: #fee2e2;
+}
+
+.toast-warning .toast-icon {
+  color: #b45309;
+  background: #fef3c7;
+}
+
+.toast-info .toast-icon {
+  color: #2563eb;
+  background: #dbeafe;
+}
+
+.toast-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.toast-title {
+  display: block;
+  margin-bottom: 4px;
+
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.toast-description {
+  margin: 0;
+
+  font-size: 13px;
+  line-height: 1.6;
+  color: #64748b;
+
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.toast-close {
+  flex-shrink: 0;
+
+  border: 0;
+  background: transparent;
+
+  color: #94a3b8;
+
+  font-size: 23px;
+  line-height: 1;
+
+  padding: 0 2px;
+  cursor: pointer;
+}
+
+.toast-close:hover {
+  color: #334155;
+}
+
+.toast-hide {
+  animation: toast-slide-out 0.25s ease-in forwards;
+}
+
+@keyframes toast-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toast-slide-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(25px);
+  }
+}
+
+/* Мобильные устройства */
+
+@media (max-width: 600px) {
+  .toast-container {
+    top: 12px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+  }
+
+  .toast {
+    padding: 13px 14px;
+  }
+}
+
+/* Учитываем настройку уменьшения анимаций */
+
+@media (prefers-reduced-motion: reduce) {
+  .toast,
+  .toast-hide {
+    animation: none;
+  }
+}
+
+/* --- Мобильная адаптивность сайта --- */
+@media (max-width: 768px) {
+  .dish-price {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--text-main);
+  }
+  /* HERO */
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 15px;
+    gap: 15px;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  /* Сетка блюд */
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .dish-info {
+    padding: 10px 12px;
+  }
+
+  .dish-footer {
+    padding: 0 12px 12px 12px;
+  }
+
+  /* Основной контейнер */
+  .container {
+    padding: 20px 10px;
+  }
+}

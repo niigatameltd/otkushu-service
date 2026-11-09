@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Корзина — otkushu</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="/icons/fav/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/icons/fav/favicon.svg" />
+    <link rel="shortcut icon" href="/icons/fav/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/icons/fav/apple-touch-icon.png"
+    />
+
+    <link rel="manifest" href="/icons/fav/site.webmanifest" />
+
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/navigation.css" />
+
+    <style>
+      .cart-page {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .cart-subtitle {
+        text-align: center;
+        color: var(--text-muted);
+        margin: 0 0 25px;
+        font-size: 14px;
+      }
+
+      .cart-panel {
+        background: #fff;
+        border: 1px solid var(--border-color);
+        border-radius: 18px;
+        padding: 22px;
+        margin-bottom: 18px;
+      }
+
+      .cart-item {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        gap: 20px;
+        align-items: center;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .cart-item:last-child {
+        border-bottom: none;
+      }
+
+      .cart-item-name {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+
+      .cart-item-price {
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+
+      .cart-item-warning {
+        font-size: 12px;
+        color: #b91c1c;
+        margin-top: 6px;
+      }
+
+      .cart-counter {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .cart-counter button {
+        background: #f8fafc;
+        border: none;
+        padding: 9px 12px;
+        font-size: 18px;
+        cursor: pointer;
+      }
+
+      .cart-counter button:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      .cart-counter span {
+        min-width: 30px;
+        text-align: center;
+        font-weight: 700;
+      }
+
+      .cart-item-right {
+        text-align: right;
+      }
+
+      .cart-item-total {
+        font-size: 16px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .cart-remove {
+        display: inline-block;
+        border: none;
+        background: transparent;
+        color: #dc2626;
+        cursor: pointer;
+        font-size: 12px;
+        margin-top: 8px;
+        padding: 4px 0;
+      }
+
+      .cart-clear {
+        border: 1px solid #fecaca;
+        color: #dc2626;
+        background: #fff;
+        border-radius: 10px;
+        padding: 11px 15px;
+        width: 100%;
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+        margin-bottom: 18px;
+      }
+
+      .coupon-panel {
+        background: #fffbeb;
+        border-color: #fde68a;
+      }
+
+      .coupon-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .coupon-heading h2 {
+        font-size: 16px;
+        margin: 0;
+      }
+
+      .coupon-discount {
+        font-weight: 800;
+        color: #166534;
+      }
+
+      .coupon-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .coupon-label input {
+        width: 19px;
+        height: 19px;
+        accent-color: var(--primary);
+        cursor: pointer;
+      }
+
+      .coupon-label input:disabled {
+        cursor: not-allowed;
+      }
+
+      .coupon-note {
+        color: #92400e;
+        font-size: 13px;
+        margin: 10px 0 0;
+        line-height: 1.6;
+      }
+
+      .cart-summary-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .cart-summary-row span:first-child {
+        color: var(--text-muted);
+      }
+
+      .cart-summary-discount {
+        color: #15803d;
+      }
+
+      .cart-summary-discount span:first-child {
+        color: #15803d;
+      }
+
+      .cart-summary-total {
+        border-top: 1px solid var(--border-color);
+        padding-top: 16px;
+        margin-top: 14px;
+        align-items: center;
+      }
+
+      .cart-summary-total strong {
+        color: var(--primary);
+        font-size: 24px;
+        font-weight: 800;
+      }
+
+      .cart-checkout {
+        width: 100%;
+        background: var(--primary);
+        border: none;
+        border-radius: 12px;
+        color: white;
+        padding: 16px;
+        font: inherit;
+        font-size: 16px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .cart-checkout:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+      }
+
+      .cart-hint {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 12px;
+        line-height: 1.6;
+        margin: 12px 0 0;
+      }
+
+      .cart-message {
+        text-align: center;
+        color: var(--text-muted);
+        padding: 24px 10px;
+      }
+
+      .cart-error {
+        color: #b91c1c;
+      }
+
+      @media (max-width: 600px) {
+        .cart-panel {
+          padding: 16px;
+        }
+
+        .cart-item {
+          grid-template-columns: 1fr auto;
+          gap: 12px;
+        }
+
+        .cart-item-info {
+          grid-column: 1 / -1;
+        }
+
+        .cart-item-right {
+          text-align: right;
+        }
+
+        .cart-summary-total strong {
+          font-size: 20px;
+        }
+      }
+
+      /* Комментарий к доставке */
+
+      .delivery-comment-label {
+        display: block;
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--text-main);
+        margin-bottom: 8px;
+      }
+
+      .delivery-comment-description {
+        font-size: 13px;
+        color: var(--text-muted);
+        margin: 0 0 14px;
+        line-height: 1.6;
+      }
+
+      .delivery-comment-input {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        min-height: 100px;
+        padding: 14px 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: #fff;
+        color: var(--text-main);
+        font: inherit;
+        font-size: 14px;
+        line-height: 1.6;
+        resize: vertical;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+
+      .delivery-comment-input:focus {
+        border-color: var(--primary);
+      }
+
+      .delivery-comment-input::placeholder {
+        color: #94a3b8;
+      }
+
+      .delivery-comment-footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 8px;
+        color: var(--text-muted);
+        font-size: 12px;
+      }
+
+      .guest-checkout-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .guest-checkout-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        font-weight: 600;
+        font-size: 13px;
+      }
+      .guest-checkout-field input,
+      .guest-checkout-field select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        font: inherit;
+        background: white;
+        font-weight: 400;
+      }
+      .guest-checkout-note {
+        color: var(--text-muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+      @media (max-width: 600px) {
+        .guest-checkout-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Навигационная шапка -->
+    <nav class="main-nav" id="mainNav" aria-label="Основная навигация">
+      <div class="nav-header-top">
+        <a href="/" class="main-nav-logo" aria-label="otkushu - на главную">
+          <span class="main-nav-logo-text">
+            <strong>otkushu</strong>
+            <small>организация питания</small>
+          </span>
+        </a>
+
+        <!-- toggleMenu() -->
+        <button
+          class="hamburger-btn"
+          type="button"
+          onclick="toggleMenu()"
+          aria-label="Открыть меню"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+      <div class="main-nav-links" id="primary-navigation">
+        <!-- FAQ -->
+        <a href="/#faq" class="main-nav-link otk-faq-link">
+          <span class="main-nav-link-icon"
+            ><img
+              src="/icons/circle-question-mark.svg"
+              alt=""
+              class="icon headicon"
+          /></span>
+          <span>О сервисе</span>
+        </a>
+        <!-- FAQ END -->
+        <a href="/" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/menu.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Меню</span>
+        </a>
+        <a href="/cart.html" class="main-nav-link" id="cart-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/shopping-cart.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Корзина</span>
+        </a>
+        <a href="/orders.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/list-ordered.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Мои заказы</span>
+        </a>
+        <a href="/stats.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/chart-bar-big.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Статистика</span>
+        </a>
+        <a href="/profile.html" class="main-nav-link">
+          <span class="main-nav-link-icon"
+            ><img src="/icons/user-round-star.svg" alt="" class="icon headicon"
+          /></span>
+          <span>Профиль</span>
+        </a>
+      </div>
+
+      <!-- Сохраняем слот -->
+      <div id="user-auth-slot" class="main-nav-auth auth-slot-hidden">
+        <a href="/login.html" class="main-nav-login">Войти</a>
+      </div>
+    </nav>
+
+    <main class="container cart-page">
+      <h1>Ваша корзина</h1>
+
+      <p class="cart-subtitle">Проверьте состав заказа перед оплатой</p>
+
+      <!-- Состав корзины -->
+      <section class="cart-panel">
+        <div id="cart-container">
+          <p class="cart-message">Загружаем корзину...</p>
+        </div>
+      </section>
+
+      <button id="clear-cart-btn" class="cart-clear" type="button" hidden>
+        Очистить корзину
+      </button>
+
+      <!-- Купоны -->
+      <section class="cart-panel coupon-panel" id="coupon-section" hidden>
+        <div class="coupon-heading">
+          <h2>🎫 Купон на скидку</h2>
+
+          <span id="coupon-percent" class="coupon-discount"> —% </span>
+        </div>
+
+        <label class="coupon-label">
+          <input type="checkbox" id="use-coupon" disabled />
+
+          <span>
+            Использовать купон (<span id="available-coupons-text">0</span>
+            доступно)
+          </span>
+        </label>
+
+        <p id="coupon-message" class="coupon-note"></p>
+      </section>
+
+      <!-- Комментарий к доставке -->
+      <section class="cart-panel" id="delivery-comment-section">
+        <label for="delivery-comment" class="delivery-comment-label">
+          Комментарий к доставке
+        </label>
+
+        <p class="delivery-comment-description">
+          Напишите комментарий к заказу
+        </p>
+
+        <textarea
+          id="delivery-comment"
+          class="delivery-comment-input"
+          placeholder="Комментарий здесь..."
+          maxlength="500"
+          rows="3"
+        ></textarea>
+
+        <div class="delivery-comment-footer">
+          <span>Необязательно для заполнения</span>
+          <span id="delivery-comment-counter">0 / 500</span>
+        </div>
+      </section>
+
+      <!-- Видно только посетителю без авторизации. -->
+      <section id="guest-panel" class="cart-panel" hidden>
+        <h2 style="font-size: 19px; margin-top: 0">
+          Оформление без регистрации
+        </h2>
+        <p class="guest-checkout-note">
+          Нужны только данные для доставки. Профиль и купоны при таком заказе не
+          создаются.
+        </p>
+        <div class="guest-checkout-grid">
+          <label class="guest-checkout-field"
+            >Ваше имя *
+            <input
+              id="guest-name"
+              type="text"
+              maxlength="100"
+              autocomplete="name"
+              placeholder="Как к вам обращаться"
+            />
+          </label>
+          <label class="guest-checkout-field"
+            >Телефон *
+            <input
+              id="guest-phone"
+              type="tel"
+              maxlength="25"
+              autocomplete="tel"
+              placeholder="+7 999 123-45-67"
+            />
+          </label>
+          <label class="guest-checkout-field"
+            >Организация *
+            <select id="guest-organization">
+              <option value="">Загрузка организаций...</option>
+            </select>
+          </label>
+          <label class="guest-checkout-field"
+            >Email (необязательно)
+            <input
+              id="guest-email"
+              type="email"
+              maxlength="255"
+              autocomplete="email"
+              placeholder="Для связи и чека при необходимости"
+            />
+          </label>
+        </div>
+        <p class="guest-checkout-note">
+          Заказ будет учтён в общей сумме организации, но купоны получат только
+          зарегистрированные участники. После создания заказа ты получишь личную
+          ссылку на его статус и оплату: сохрани её.
+        </p>
+        <p class="guest-checkout-note">
+          Хочешь получать купоны и играть в «Откусить!»?
+          <a href="/login.html">Зарегистрируйся</a>.
+        </p>
+      </section>
+
+      <!-- Расчёт суммы -->
+      <section class="cart-panel">
+        <div class="cart-summary-row">
+          <span>Стоимость блюд</span>
+          <strong id="cart-subtotal">—</strong>
+        </div>
+
+        <div class="cart-summary-row">
+          <span>Сервисный сбор</span>
+          <strong id="cart-delivery-fee">—</strong>
+        </div>
+
+        <div
+          class="cart-summary-row cart-summary-discount"
+          id="discount-row"
+          hidden
+        >
+          <span id="discount-title">Скидка</span>
+          <strong id="discount-amount">—</strong>
+        </div>
+
+        <div class="cart-summary-row cart-summary-total">
+          <span>Итого к оплате</span>
+          <strong id="cart-total">—</strong>
+        </div>
+
+        <button type="button" id="checkout-btn" class="cart-checkout" disabled>
+          Загрузка данных...
+        </button>
+
+        <p id="checkout-message" class="cart-hint">
+          Итоговая сумма будет рассчитана по актуальным настройкам сервиса.
+        </p>
+      </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>О сервисе «otkushu»</h4>
+          <p>
+            <b>Услуга</b> по организации и доставки индивидуального питания в
+            г.Якутск
+          </p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Правовая информация</h4>
+          <a href="/offer.html"> Пользовательское соглашение (Оферта) </a>
+          <a href="/delivery-terms.html"> Правила доставки и возврата </a>
+        </div>
+
+        <div class="footer-section">
+          <h4>Контакты и реквизиты</h4>
+
+          <div class="footer-contact-item">
+            <img src="/icons/map-pin-house.svg" alt="" class="footicon" />
+            <span>г. Якутск, Республика Саха (Якутия)</span>
+          </div>
+
+          <div class="footer-contact-item">
+            <img src="/icons/phone-log.svg" alt="" class="footicon" />
+            <span>+7 (996) 120-77-94</span>
+          </div>
+
+          <div class="footer-contact-item">
+            <img src="/icons/mail.svg" alt="" class="footicon" />
+            <span>niigatameltd@yandex.ru</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        otkushu &copy; 2026 — Все права защищены. Приём платежей защищён
+        протоколом HTTPS и ЮKassa.
+      </div>
+    </footer>
+
+    <script src="/scripts/preload.js"></script>
+    <script src="/scripts/cart.js"></script>
+    <script src="/scripts/navigation-helper.js"></script>
+  </body>
+</html>
