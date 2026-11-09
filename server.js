@@ -26,6 +26,10 @@ const pool = new Pool({
   port: process.env.DB_PORT || 5432,
 });
 
+//
+if (process.env.NODE_ENV === "development") {
+  app.use(express.static(__dirname));
+}
 // Больше нет app.use(express.static(...)) — статику отдает Nginx!
 
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -34,7 +38,7 @@ let appSettings = {
   ORGANIZATION_GOAL_AMOUNT: 1000, // Порог суммы для купонов
   ORDER_DEADLINE_HOUR: 11, // Час дедлайна (12:00)
   COUPON_DISCOUNT_PERCENT: 10,
-  DELIVERY_SERVICE_FEE: 50,
+  DELIVERY_SERVICE_FEE: 49,
 };
 
 // Настройка хранилища для загружаемых картинок блюд
