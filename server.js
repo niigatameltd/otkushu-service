@@ -42,7 +42,6 @@ let appSettings = {
   DELIVERY_SERVICE_FEE: 49,
 };
 
-// Настройка хранилища для загружаемых картинок блюд
 // Настройка хранилища для загружаемых картинок
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
