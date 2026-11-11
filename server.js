@@ -1,13 +1,14 @@
-require("dotenv").config(); // dotenv для хранения секретов и конфигураций
-const express = require("express");
-const { Pool } = require("pg");
-const jwt = require("jsonwebtoken");
-const cookieParser = require("cookie-parser");
-const multer = require("multer");
-const path = require("path");
-const { randomInt, randomBytes, createHash } = require("node:crypto");
-const { rateLimit, ipKeyGenerator } = require("express-rate-limit");
-const { hashPin, verifyPin } = require("./pin-security");
+import "dotenv/config";
+import express from "express";
+import { Client, Pool } from "pg";
+
+import jwt from "jsonwebtoken";
+import cookieParser from "cookie-parser";
+import multer from "multer";
+import path from "node:path";
+import { randomInt, randomBytes, createHash } from "node:crypto";
+import { rateLimit, ipKeyGenerator } from "express-rate-limit";
+import { hashPin, verifyPin } from "./pin-security.js";
 
 const app = express();
 // Доверяем заголовкам X-Forwarded-For только от локального Nginx.
@@ -28,7 +29,7 @@ const pool = new Pool({
 
 //
 if (process.env.NODE_ENV === "development") {
-  app.use(express.static(__dirname));
+  app.use(express.static(import.meta.dirname));
 }
 // Больше нет app.use(express.static(...)) — статику отдает Nginx!
 
